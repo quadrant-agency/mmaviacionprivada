@@ -1236,15 +1236,15 @@ tbody tr.row-total td {
       </div>
       <div class="milestone fade-in">
         <div class="milestone-when">Año 3</div>
-        <div class="milestone-what">Equipo completo (Líder + 5)<br>y primer millón USD acumulado.</div>
+        <div class="milestone-what" id="hito-equipo">Equipo completo (Líder + 5)<br>y primer millón USD acumulado.</div>
       </div>
       <div class="milestone fade-in">
-        <div class="milestone-when">Y4</div>
+        <div class="milestone-when" id="hito-anual-when">Año 4</div>
         <div class="milestone-what">Se cruza $1M USD anual<br>(con avión).</div>
       </div>
       <div class="milestone fade-in">
         <div class="milestone-when">5 años</div>
-        <div class="milestone-what">$3.3M base · $4.4M con avión<br>acumulado.</div>
+        <div class="milestone-what" id="hito-acum">$3.3M base · $3.8M con avión<br>acumulado.</div>
       </div>
     </div>
   </div>
@@ -1458,8 +1458,25 @@ window.addEventListener('scroll', () => {
     var avn=(cur==='minimo')?2:3,avpct=(cur==='minimo')?'3–4%':'4–6%';
     setTxt('neg-avf-n',avn);setTxt('neg-avf-n2',avn);setTxt('neg-avf-pct',avpct);setTxt('neg-avf-pct2',avpct);
   }
+  function renderHitos(){
+    if(!document.getElementById('hito-acum'))return;
+    var mo=model(cur),cumB=0,cumA=0,yMillon=null,yAnnualAv=null,y;
+    function usdM(v){return '$'+(Math.round(v/TC/100000)/10)+'M';}
+    for(y=0;y<5;y++){var a=yearAgg(mo,y);
+      var opT=a.maxO+a.lidO+a.jrO;
+      var anaBase=opT-0.15*opT-0.255*(a.lidO+a.jrO)-a.sue;
+      var conAv=anaBase+0.595*(a.lc+a.jc)*AVION;
+      cumB+=anaBase;cumA+=conAv;
+      if(yMillon===null&&cumB/TC>=1000000)yMillon=y+1;
+      if(yAnnualAv===null&&conAv/TC>=1000000)yAnnualAv=y+1;
+    }
+    if(yMillon===3)setTxt('hito-equipo','Equipo completo (Líder + 5)<br>y primer millón USD acumulado.');
+    else setTxt('hito-equipo','Equipo completo (Líder + 5).<br>Primer millón acumulado en el Año '+yMillon+'.');
+    setTxt('hito-anual-when',yAnnualAv?('Año '+yAnnualAv):'—');
+    setTxt('hito-acum',usdM(cumB)+' base · '+usdM(cumA)+' con avión<br>acumulado.');
+  }
   function renderToggles(){var bs=document.querySelectorAll('.scenario-toggle button');for(var i=0;i<bs.length;i++){if(bs[i].getAttribute('data-scen')===cur)bs[i].classList.add('active');else bs[i].classList.remove('active');}}
-  function renderAll(){renderRoles();renderProy();renderBim();renderOp();renderTot();renderAv();render15();renderFunnel();renderToggles();}
+  function renderAll(){renderRoles();renderProy();renderBim();renderOp();renderTot();renderAv();render15();renderFunnel();renderHitos();renderToggles();}
   window.setScenario=function(s){cur=s;renderAll();};
   if(document.readyState!=='loading')renderAll();else document.addEventListener('DOMContentLoaded',renderAll);
 })();
