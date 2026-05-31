@@ -649,7 +649,7 @@ tbody tr.row-total td {
         <ul class="role-goals">
           <li><span id="neg-max-goal">1 paquete cada 2 meses + 3 vuelos por mes</span></li>
           <li>Conserva su cartera (renovaciones al 60%)</li>
-          <li>Apoya al líder a cerrar aviones (sin comisión propia)</li>
+          <li>Sin meta de avión</li>
           <li>Sin comisión — su producción va directo a utilidades de la empresa</li>
         </ul>
         <div class="role-earning">
@@ -834,7 +834,7 @@ tbody tr.row-total td {
     </div>
 
     <p style="font-size:13px; color:var(--gray); margin-bottom:14px;" class="fade-in">
-      El detalle bimestre por bimestre de los primeros 2 años. Las primeras columnas muestran <strong style="color:var(--white)">exactamente qué debe vender todo el equipo</strong> (Max, Líder y Juniors) en cada bimestre; las siguientes traducen esas ventas a dinero. Cada renglón es verificable: <strong style="color:var(--white)">unidades × precio = utilidad operativa</strong>. Montos en USD, base <strong style="color:var(--white)">sin avión</strong> (el avión es upside anual; lo cierran el Líder y Max, sin mes fijo). TC 17.5.
+      El detalle bimestre por bimestre de los primeros 2 años. Las primeras columnas muestran <strong style="color:var(--white)">exactamente qué debe vender todo el equipo</strong> (Max, Líder y Juniors) en cada bimestre; las siguientes traducen esas ventas a dinero. Cada renglón es verificable: <strong style="color:var(--white)">unidades × precio = utilidad operativa</strong>. Montos en USD, base <strong style="color:var(--white)">sin avión</strong> (el avión es upside anual; lo cierra el Líder, sin mes fijo). TC 17.5.
     </p>
 
     <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')" class="active">Meta</button></div>
@@ -1042,7 +1042,7 @@ tbody tr.row-total td {
       <h2 class="section-title">Estado de Resultados Anual</h2>
     </div>
     <p style="font-size:13px;color:var(--gray);margin-bottom:8px;" class="fade-in">
-      El negocio tiene <strong style="color:var(--white)">dos motores</strong>: la operación recurrente (vuelos charter y paquetes de horas) y la compra-venta de aviones. Aquí va cada uno por separado y, al final, el total cumpliendo ambas metas. Cada vendedor del equipo —el Líder y cada Junior— <strong style="color:var(--white)">vende <span id="neg-av-prose">1 avión al año</span></strong> al cumplir su primer año completo. Montos en USD, TC 17.5.
+      El negocio tiene <strong style="color:var(--white)">dos motores</strong>: la operación recurrente (vuelos charter y paquetes de horas) y la compra-venta de aviones. Aquí va cada uno por separado y, al final, el total cumpliendo ambas metas. La compra-venta de aviones es <strong style="color:var(--white)">meta del Líder</strong>: <span id="neg-av-prose">1 avión el año 1 y 3 al año desde el año 2</span>. Montos en USD, TC 17.5.
     </p>
 
     <h3 style="font-family:'Cinzel',serif;color:var(--white);font-size:19px;margin:40px 0 16px;" class="fade-in">1 · Operación — vuelos charter y paquetes de horas</h3>
@@ -1102,13 +1102,13 @@ tbody tr.row-total td {
     </div>
 
     <h3 style="font-family:'Cinzel',serif;color:var(--white);font-size:19px;margin:40px 0 16px;" class="fade-in">2 · Compra-venta de aviones</h3>
-    <p style="font-size:13px;color:var(--gray);margin:-6px 0 16px;" class="fade-in">Cada Líder y Junior vende <span id="neg-av-note">1 avión al año</span>. Un vendedor aporta su primer avión hasta cumplir 12 meses, por eso los Juniors recién entrados todavía no suman en su año de entrada. Sin sueldos base aquí: ya están contemplados en la operación.</p>
+    <p style="font-size:13px;color:var(--gray);margin:-6px 0 16px;" class="fade-in">Los aviones son meta del Líder: <span id="neg-av-note">1 avión el año 1 y 3 al año desde el año 2</span>. Los Juniors no llevan cuota de avión. Sin sueldos base aquí: ya están contemplados en la operación.</p>
     <div class="table-wrap fade-in">
       <table style="min-width:560px;">
         <thead>
           <tr>
             <th>Año</th>
-            <th style="border-left:1px solid var(--gold-border);">Aviones · líder + Max</th>
+            <th style="border-left:1px solid var(--gold-border);">Aviones · líder</th>
             <th style="border-left:1px solid var(--gold-border);">Utilidad operativa</th><th>15% operativo</th><th>Comisiones</th><th>Tu utilidad neta</th>
           </tr>
         </thead>
@@ -1153,7 +1153,7 @@ tbody tr.row-total td {
       </table>
     </div>
 
-    <p class="disclaimer fade-in"><b style="color:var(--white)">Quién cierra los aviones:</b> son meta del Líder, junto con Max —no se reparten como cuota entre los Juniors, porque un jet de varios millones, con ciclo de 6 a 18 meses y due diligence, lo cierra alguien senior con relaciones. <b style="color:var(--white)">Estirón:</b> 4–5 aviones al año, con bono adicional al Líder. <b style="color:var(--white)">Bono de referido:</b> el vendedor que refiera un prospecto que termine comprando avión recibe $10,000 USD por operación cerrada (incentivo, no cuota). El mercado nacional ronda 50–80 compraventas de jets al año, así que 3 al año es ~4–6%.</p>
+    <p class="disclaimer fade-in"><b style="color:var(--white)">Quién cierra los aviones:</b> son meta del Líder —no se reparten como cuota entre los Juniors, porque un jet de varios millones, con ciclo de 6 a 18 meses y due diligence, lo cierra alguien senior con relaciones. <b style="color:var(--white)">Estirón:</b> 4–5 aviones al año, con bono adicional al Líder. <b style="color:var(--white)">Bono de referido:</b> el vendedor que refiera un prospecto que termine comprando avión recibe $10,000 USD por operación cerrada (incentivo, no cuota). El mercado nacional ronda 50–80 compraventas de jets al año, así que 3 al año es ~4–6%.</p>
     <h3 style="font-family:'Cinzel',serif;color:var(--white);font-size:19px;margin:40px 0 16px;" class="fade-in">3 · Total — cumpliendo ambas metas</h3>
     <div class="table-wrap fade-in" style="border-color:var(--gold);">
       <table style="min-width:520px;">
@@ -1333,6 +1333,7 @@ window.addEventListener('scroll', () => {
   function avmon(s,M){var a=[];for(var k=0;k<6;k++){var mm=s+11+12*k;if(mm<=M)a.push(mm);}return a;}
   function fay(start){return Math.ceil((start+11)/12);}
   function avYear(start,scen,y){var F=fay(start);return y<F?0:1;}
+  function avCount(scen,y){return y===1?1:(scen==='minimo'?2:3);}
   function usd(v){return '$'+Math.round(v/TC).toLocaleString('en-US');}
   function usdK(v){return '$'+Math.round(v/TC/1000)+'K';}
   function setTxt(id,t){var e=document.getElementById(id);if(e)e.innerHTML=t;}
@@ -1349,7 +1350,7 @@ window.addEventListener('scroll', () => {
     var maxO=0,lidO=0,jrO=0,sue=0,V=0,P=0,R=0;
     ms.forEach(function(m){maxO+=ops(mo.mx,m);lidO+=ops(mo.ld,m);for(i=0;i<mo.jr.length;i++)jrO+=ops(mo.jr[i],m);sue+=mo.active[m]*BASE;
       V+=mo.mx.V[m]+mo.ld.V[m];P+=mo.mx.P[m]+mo.ld.P[m];R+=mo.mx.Rn[m]+mo.ld.Rn[m];for(i=0;i<mo.jr.length;i++){V+=mo.jr[i].V[m];P+=mo.jr[i].P[m];R+=mo.jr[i].Rn[m];}});
-    var lc=(cur==='minimo')?2:3;
+    var lc=avCount(cur,y+1);
     var jc=0;
     return {ms:ms,maxO:maxO,lidO:lidO,jrO:jrO,sue:sue,V:V,P:P,R:R,lc:lc,jc:jc};
   }
@@ -1444,18 +1445,18 @@ window.addEventListener('scroll', () => {
   }
   function renderAv(){
     var el=document.getElementById('neg-av');if(!el)return;
-    var av=(cur==='minimo')?2:3,html='',TC2=0,TU=0,T15=0,TCo=0,TN=0,y;
+    var steady=(cur==='minimo')?2:3,html='',TC2=0,TU=0,T15=0,TCo=0,TN=0,y;
     for(y=1;y<=5;y++){
-      var cnt=av,util=cnt*AVION,c15=0.15*util,comis=cnt*0.255*AVION,neta=0.595*cnt*AVION;
+      var cnt=avCount(cur,y),util=cnt*AVION,c15=0.15*util,comis=cnt*0.255*AVION,neta=0.595*cnt*AVION;
       TC2+=cnt;TU+=util;T15+=c15;TCo+=comis;TN+=neta;
       html+='<tr><td>Año '+y+'<div style="font-size:11px;color:var(--gray);font-weight:400;font-family:Manrope;">'+PER[y-1]+'</div></td><td style="border-left:1px solid var(--gold-border);color:var(--gold-light);">'+cnt+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(util)+'</td><td style="color:var(--gray);">−'+usd(c15)+'</td><td style="color:var(--gray);">−'+usd(comis)+'</td><td style="color:var(--gold);font-weight:700;">'+usd(neta)+'</td></tr>';
     }
     html+='<tr class="row-total"><td>Total 5 años</td><td style="border-left:1px solid var(--gold-border);">'+TC2+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(TU)+'</td><td>−'+usd(T15)+'</td><td>−'+usd(TCo)+'</td><td>'+usd(TN)+'</td></tr>';
     el.innerHTML=html;
-    setTxt('neg-av-note','los cierran el líder y Max ('+av+' al año); los Juniors no llevan cuota de avión');
-    setTxt('neg-av-lid','Cierra los aviones del equipo, con Max: '+av+' al año');
+    setTxt('neg-av-note','1 avión el año 1 y '+steady+' al año desde el año 2');
+    setTxt('neg-av-lid','Cierra los aviones del equipo: 1 el año 1, '+steady+' al año desde el año 2');
     setTxt('neg-av-jr','Bono de referido: $10,000 USD si refiere un cliente que compra avión');
-    setTxt('neg-av-prose','el líder, junto con Max, cierra los aviones del equipo ('+av+' al año); los Juniors no llevan cuota');
+    setTxt('neg-av-prose','1 avión el año 1 y '+steady+' al año desde el año 2');
   }
   function renderFunnel(){
     var mo=model(cur),p=yearAgg(mo,4).P,lo=Math.round(p/10),hi=Math.round(p/6),pct=lo+'–'+hi+'%';
