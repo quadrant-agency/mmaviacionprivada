@@ -665,7 +665,7 @@ tbody tr.row-total td {
           <li>Ramp: M1 = 2 vuelos, M2 = 3 vuelos</li>
           <li><span id="neg-lid-goal">Cuota (M3+): 1 paquete cada 2 meses + 3 vuelos/mes</span></li>
           <li>Conserva su cartera (renovaciones al 60%, adicionales)</li>
-          <li>1 avión al año (meta anual, sin mes fijo)</li>
+          <li><span id="neg-av-lid">1 avión al año (meta anual, sin mes fijo)</span></li>
           <li>Desde M7: incorpora y dirige al equipo</li>
           <li>Suma 1 Junior nuevo cada ~7 meses (hasta 5)</li>
         </ul>
@@ -682,7 +682,7 @@ tbody tr.row-total td {
           <li>Ramp: propio M1 = 2V, M2 = 3V</li>
           <li><span id="neg-jr-goal">Cuota (propio M3+): 1 paquete cada 2 meses + 3 vuelos/mes</span></li>
           <li>Conserva su cartera (renovaciones al 60%)</li>
-          <li>1 avión al año (meta anual)</li>
+          <li><span id="neg-av-jr">1 avión al año (meta anual)</span></li>
           <li>Reporta al Líder</li>
         </ul>
         <div class="role-earning">
@@ -1042,7 +1042,7 @@ tbody tr.row-total td {
       <h2 class="section-title">Estado de Resultados Anual</h2>
     </div>
     <p style="font-size:13px;color:var(--gray);margin-bottom:8px;" class="fade-in">
-      El negocio tiene <strong style="color:var(--white)">dos motores</strong>: la operación recurrente (vuelos charter y paquetes de horas) y la compra-venta de aviones. Aquí va cada uno por separado y, al final, el total cumpliendo ambas metas. Cada vendedor del equipo —el Líder y cada Junior— <strong style="color:var(--white)">vende 1 avión al año</strong> al cumplir su primer año completo. Montos en USD, TC 17.5.
+      El negocio tiene <strong style="color:var(--white)">dos motores</strong>: la operación recurrente (vuelos charter y paquetes de horas) y la compra-venta de aviones. Aquí va cada uno por separado y, al final, el total cumpliendo ambas metas. Cada vendedor del equipo —el Líder y cada Junior— <strong style="color:var(--white)">vende <span id="neg-av-prose">1 avión al año</span></strong> al cumplir su primer año completo. Montos en USD, TC 17.5.
     </p>
 
     <h3 style="font-family:'Cinzel',serif;color:var(--white);font-size:19px;margin:40px 0 16px;" class="fade-in">1 · Operación — vuelos charter y paquetes de horas</h3>
@@ -1457,6 +1457,9 @@ window.addEventListener('scroll', () => {
     html+='<tr class="row-total"><td>Total 5 años</td><td style="border-left:1px solid var(--gold-border);">'+TL+'</td><td>'+TJ+'</td><td>'+TC2+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(TU)+'</td><td>−'+usd(T15)+'</td><td>−'+usd(TCo)+'</td><td>'+usd(TN)+'</td></tr>';
     el.innerHTML=html;
     setTxt('neg-av-note',cur==='minimo'?'1 avión al año':'2 aviones al año desde el año 2 (1 el primer año)');
+    setTxt('neg-av-lid',cur==='minimo'?'1 avión al año (meta anual, sin mes fijo)':'2 aviones al año desde el año 2 (1 el primer año)');
+    setTxt('neg-av-jr',cur==='minimo'?'1 avión al año (meta anual)':'2 aviones al año desde el año 2');
+    setTxt('neg-av-prose',cur==='minimo'?'1 avión al año':'2 aviones al año a partir del año 2');
   }
   function renderFunnel(){
     var mo=model(cur),p=yearAgg(mo,4).P,lo=Math.round(p/10),hi=Math.round(p/6),pct=lo+'–'+hi+'%';

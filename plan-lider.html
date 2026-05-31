@@ -126,7 +126,7 @@ th.right{text-align:right;}
   <div class="hero-meta">
     <div class="hero-meta-item"><div class="hero-meta-number">5</div><div class="hero-meta-label">años de plan</div></div>
     <div class="hero-meta-item"><div class="hero-meta-number">5</div><div class="hero-meta-label">vendedores a formar</div></div>
-    <div class="hero-meta-item"><div class="hero-meta-number">1</div><div class="hero-meta-label">avión al año (meta)</div></div>
+    <div class="hero-meta-item"><div class="hero-meta-number"><span id="lid-av-hero-n">1</span></div><div class="hero-meta-label"><span id="lid-av-hero-l">avión al año (meta)</span></div></div>
   </div>
 </header>
 
@@ -163,7 +163,7 @@ th.right{text-align:right;}
     <div class="phase fade-in" style="margin-bottom:0;">
       <ul class="phase-list">
         <li><b>Cuota personal sostenida todo el año:</b> <span id="lid-anual">3 vuelos charter cada mes + 1 paquete cada 2 meses (≈6 paquetes nuevos al año)</span>, sin interrupción.</li>
-        <li><b>1 avión al año.</b> Es una meta anual; no hay un mes fijo para lograrla.</li>
+        <li><b><span id="lid-av-anual">1 avión al año</span>.</b> Es una meta anual; no hay un mes fijo para lograrla.</li>
         <li><b>Conservar la cartera:</b> lograr que los clientes renueven su paquete al cumplir cada ciclo. Las renovaciones son adicionales a la cuota de paquetes nuevos.</li>
         <li><b>Formar equipo:</b> incorporar y dejar produciendo 1 Junior nuevo cada ~7 meses, hasta completar 5 vendedores.</li>
         <li><b>Responder por el equipo:</b> la meta total del rol es la producción propia más la del equipo a cargo.</li>
@@ -209,7 +209,7 @@ th.right{text-align:right;}
       <ul class="phase-list">
         <li><b>Mes 1:</b> 2 vuelos charter. <b>Mes 2:</b> 3 vuelos charter. Rampa de arranque.</li>
         <li><b>Mes 3 en adelante:</b> <span id="lid-jr3plus">3 vuelos charter al mes + 1 paquete nuevo cada 2 meses.</span></li>
-        <li><b>1 avión al año</b> (meta anual, sin mes fijo).</li>
+        <li><b><span id="lid-av-jr">1 avión al año</span></b> (meta anual, sin mes fijo).</li>
         <li>Conservar su propia cartera para lograr renovaciones, igual que el Líder.</li>
       </ul>
     </div>
@@ -343,6 +343,9 @@ window.addEventListener('scroll',()=>{if(window.scrollY>500)nav.classList.add('v
     el.innerHTML=html;
     if(cur==='minimo'){setTxt('lid-av-note','1 por vendedor');setTxt('lid-av-note2','1 avión al año');}
     else{setTxt('lid-av-note','1 el primer año y 2 por vendedor desde el año 2');setTxt('lid-av-note2','2 aviones al año a partir del año 2 (1 el primer año)');}
+    var av1=(cur==='minimo')?'1 avión al año':'2 aviones al año a partir del año 2';
+    setTxt('lid-av-anual',av1);setTxt('lid-av-jr',av1);
+    setTxt('lid-av-hero-n',cur==='minimo'?'1':'2');setTxt('lid-av-hero-l',cur==='minimo'?'avión al año (meta)':'aviones/año (desde año 2)');
   }
   function renderToggles(){var bs=document.querySelectorAll('.scenario-toggle button');for(var i=0;i<bs.length;i++){if(bs[i].getAttribute('data-scen')===cur)bs[i].classList.add('active');else bs[i].classList.remove('active');}}
   function renderAll(){renderTexts();renderBim();renderAv();renderToggles();}
