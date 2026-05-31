@@ -1097,7 +1097,7 @@ tbody tr.row-total td {
     </div>
 
     <h3 style="font-family:'Cinzel',serif;color:var(--white);font-size:19px;margin:40px 0 16px;" class="fade-in">2 · Compra-venta de aviones</h3>
-    <p style="font-size:13px;color:var(--gray);margin:-6px 0 16px;" class="fade-in">Cada Líder y Junior vende 1 avión al año. Un vendedor aporta su primer avión hasta cumplir 12 meses, por eso los Juniors recién entrados todavía no suman en su año de entrada. Sin sueldos base aquí: ya están contemplados en la operación.</p>
+    <p style="font-size:13px;color:var(--gray);margin:-6px 0 16px;" class="fade-in">Cada Líder y Junior vende <span id="neg-av-note">1 avión al año</span>. Un vendedor aporta su primer avión hasta cumplir 12 meses, por eso los Juniors recién entrados todavía no suman en su año de entrada. Sin sueldos base aquí: ya están contemplados en la operación.</p>
     <div class="table-wrap fade-in">
       <table style="min-width:760px;">
         <thead>
@@ -1111,7 +1111,7 @@ tbody tr.row-total td {
             <th style="border-left:1px solid var(--gold-border);">Utilidad operativa</th><th>15% operativo</th><th>Comisiones</th><th>Tu utilidad neta</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="neg-av">
           <tr>
             <td>Año 1<div style="font-size:11px;color:var(--gray);font-weight:400;font-family:Manrope;">Jun 2026 – May 2027</div></td>
             <td style="border-left:1px solid var(--gold-border);">1</td><td>0</td><td style="color:var(--gold-light);">1</td>
@@ -1329,6 +1329,8 @@ window.addEventListener('scroll', () => {
   function vendor(start,ramp,scen,isMax,M){var r=RATES[scen],steady=r.steady,sp=isMax?1:3,m,cm,jm;var nw=[];for(m=0;m<=M;m++)nw[m]=0;for(cm=start;cm<=M;cm++){jm=cm-start+1;if(jm>=sp&&(jm-sp)%r.every===0)nw[cm]=1;}var R=renovInt(nw,M);var V=[],P=[],Rn=[];for(m=0;m<=M;m++){V[m]=0;P[m]=0;Rn[m]=0;}for(cm=start;cm<=M;cm++){jm=cm-start+1;V[cm]=ramp?(jm===1?2:(jm===2?3:steady)):steady;P[cm]=nw[cm];Rn[cm]=R[cm];}return {V:V,P:P,Rn:Rn};}
   function ops(o,m){return o.V[m]*VUELO+(o.P[m]+o.Rn[m])*PAQ;}
   function avmon(s,M){var a=[];for(var k=0;k<6;k++){var mm=s+11+12*k;if(mm<=M)a.push(mm);}return a;}
+  function fay(start){return Math.ceil((start+11)/12);}
+  function avYear(start,scen,y){var F=fay(start);if(y<F)return 0;if(scen==='minimo')return 1;return y===1?1:2;}
   function usd(v){return '$'+Math.round(v/TC).toLocaleString('en-US');}
   function usdK(v){return '$'+Math.round(v/TC/1000)+'K';}
   function setTxt(id,t){var e=document.getElementById(id);if(e)e.innerHTML=t;}
@@ -1345,8 +1347,8 @@ window.addEventListener('scroll', () => {
     var maxO=0,lidO=0,jrO=0,sue=0,V=0,P=0,R=0;
     ms.forEach(function(m){maxO+=ops(mo.mx,m);lidO+=ops(mo.ld,m);for(i=0;i<mo.jr.length;i++)jrO+=ops(mo.jr[i],m);sue+=mo.active[m]*BASE;
       V+=mo.mx.V[m]+mo.ld.V[m];P+=mo.mx.P[m]+mo.ld.P[m];R+=mo.mx.Rn[m]+mo.ld.Rn[m];for(i=0;i<mo.jr.length;i++){V+=mo.jr[i].V[m];P+=mo.jr[i].P[m];R+=mo.jr[i].Rn[m];}});
-    var lc=mo.lav.filter(function(x){return x>=12*y+1&&x<=12*y+12;}).length;
-    var jc=0;mo.jav.forEach(function(av){jc+=av.filter(function(x){return x>=12*y+1&&x<=12*y+12;}).length;});
+    var lc=avYear(1,cur,y+1);
+    var jc=0;for(var qq=0;qq<JR.length;qq++)jc+=avYear(JR[qq],cur,y+1);
     return {ms:ms,maxO:maxO,lidO:lidO,jrO:jrO,sue:sue,V:V,P:P,R:R,lc:lc,jc:jc};
   }
 
@@ -1438,8 +1440,21 @@ window.addEventListener('scroll', () => {
     setTxt('neg-lid-amt',usdK(l1)+' → '+usdK(l5));
     setTxt('neg-jr-amt','~'+usdK(jSin)+'/año');
   }
+  function renderAv(){
+    var el=document.getElementById('neg-av');if(!el)return;
+    var html='',TL=0,TJ=0,TC2=0,TU=0,T15=0,TCo=0,TN=0,y,i;
+    for(y=1;y<=5;y++){
+      var lc=avYear(1,cur,y),jc=0;for(i=0;i<JR.length;i++)jc+=avYear(JR[i],cur,y);
+      var cnt=lc+jc,util=cnt*AVION,c15=0.15*util,comis=cnt*0.255*AVION,neta=0.595*cnt*AVION;
+      TL+=lc;TJ+=jc;TC2+=cnt;TU+=util;T15+=c15;TCo+=comis;TN+=neta;
+      html+='<tr><td>Año '+y+'<div style="font-size:11px;color:var(--gray);font-weight:400;font-family:Manrope;">'+PER[y-1]+'</div></td><td style="border-left:1px solid var(--gold-border);">'+lc+'</td><td>'+jc+'</td><td style="color:var(--gold-light);">'+cnt+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(util)+'</td><td style="color:var(--gray);">−'+usd(c15)+'</td><td style="color:var(--gray);">−'+usd(comis)+'</td><td style="color:var(--gold);font-weight:700;">'+usd(neta)+'</td></tr>';
+    }
+    html+='<tr class="row-total"><td>Total 5 años</td><td style="border-left:1px solid var(--gold-border);">'+TL+'</td><td>'+TJ+'</td><td>'+TC2+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(TU)+'</td><td>−'+usd(T15)+'</td><td>−'+usd(TCo)+'</td><td>'+usd(TN)+'</td></tr>';
+    el.innerHTML=html;
+    setTxt('neg-av-note',cur==='minimo'?'1 avión al año':'2 aviones al año desde el año 2 (1 el primer año)');
+  }
   function renderToggles(){var bs=document.querySelectorAll('.scenario-toggle button');for(var i=0;i<bs.length;i++){if(bs[i].getAttribute('data-scen')===cur)bs[i].classList.add('active');else bs[i].classList.remove('active');}}
-  function renderAll(){renderRoles();renderProy();renderBim();renderOp();renderTot();render15();renderToggles();}
+  function renderAll(){renderRoles();renderProy();renderBim();renderOp();renderTot();renderAv();render15();renderToggles();}
   window.setScenario=function(s){cur=s;renderAll();};
   if(document.readyState!=='loading')renderAll();else document.addEventListener('DOMContentLoaded',renderAll);
 })();

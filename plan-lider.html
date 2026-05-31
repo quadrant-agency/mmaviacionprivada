@@ -236,14 +236,15 @@ th.right{text-align:right;}
   <div class="container">
     <div class="section-label fade-in">Venta de aviones</div>
     <h2 class="section-title fade-in">Aviones por año</h2>
-    <p class="section-intro fade-in">La venta de aviones es una meta anual —1 por vendedor, en cualquier mes del año—, por eso va aparte. La meta del equipo crece conforme se incorporan y maduran los Juniors (equipo topado en Líder + 5).</p>
+    <p class="section-intro fade-in">La venta de aviones es una meta anual —<span id="lid-av-note">1 por vendedor</span>, en cualquier mes del año—, por eso va aparte. La meta del equipo crece conforme se incorporan y maduran los Juniors (equipo topado en Líder + 5).</p>
+    <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')">Meta</button></div>
     <div class="tbl-wrap fade-in">
       <table style="min-width:480px;">
         <thead><tr><th>Año</th><th>Periodo</th><th class="right">Líder</th><th class="right">Juniors</th><th class="right">Total aviones</th></tr></thead>
-        <tbody><tr><td class="mcell">Año 1</td><td style="color:var(--gray);">Jun 2026 – May 2027</td><td class="money">1</td><td class="money">0</td><td class="money strong">1</td></tr><tr><td class="mcell">Año 2</td><td style="color:var(--gray);">Jun 2027 – May 2028</td><td class="money">1</td><td class="money">1</td><td class="money strong">2</td></tr><tr><td class="mcell">Año 3</td><td style="color:var(--gray);">Jun 2028 – May 2029</td><td class="money">1</td><td class="money">3</td><td class="money strong">4</td></tr><tr><td class="mcell">Año 4</td><td style="color:var(--gray);">Jun 2029 – May 2030</td><td class="money">1</td><td class="money">5</td><td class="money strong">6</td></tr><tr><td class="mcell">Año 5</td><td style="color:var(--gray);">Jun 2030 – May 2031</td><td class="money">1</td><td class="money">5</td><td class="money strong">6</td></tr></tbody>
+        <tbody id="lid-av"><tr><td class="mcell">Año 1</td><td style="color:var(--gray);">Jun 2026 – May 2027</td><td class="money">1</td><td class="money">0</td><td class="money strong">1</td></tr><tr><td class="mcell">Año 2</td><td style="color:var(--gray);">Jun 2027 – May 2028</td><td class="money">1</td><td class="money">1</td><td class="money strong">2</td></tr><tr><td class="mcell">Año 3</td><td style="color:var(--gray);">Jun 2028 – May 2029</td><td class="money">1</td><td class="money">3</td><td class="money strong">4</td></tr><tr><td class="mcell">Año 4</td><td style="color:var(--gray);">Jun 2029 – May 2030</td><td class="money">1</td><td class="money">5</td><td class="money strong">6</td></tr><tr><td class="mcell">Año 5</td><td style="color:var(--gray);">Jun 2030 – May 2031</td><td class="money">1</td><td class="money">5</td><td class="money strong">6</td></tr></tbody>
       </table>
     </div>
-    <p class="disclaimer fade-in">Cada vendedor tiene como meta 1 avión al año. Un Junior aporta su primer avión hasta cumplir su primer año completo, por eso los Juniors recién incorporados todavía no suman en su año de entrada.</p>
+    <p class="disclaimer fade-in">Cada vendedor tiene como meta <span id="lid-av-note2">1 avión al año</span>. Un Junior aporta su primer avión hasta cumplir su primer año completo, por eso los Juniors recién incorporados todavía no suman en su año de entrada.</p>
   </div>
 </section>
 
@@ -281,12 +282,15 @@ window.addEventListener('scroll',()=>{if(window.scrollY>500)nav.classList.add('v
 (function(){
   var JR=[7,14,21,28,35];
   var RATES={minimo:{steady:3,pkgEvery:2},meta:{steady:4,pkgEvery:1}};
+  var PER=['Jun 2026 – May 2027','Jun 2027 – May 2028','Jun 2028 – May 2029','Jun 2029 – May 2030','Jun 2030 – May 2031'];
   var NOM=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
   var cur='minimo';
   function ym(m){var i=5+(m-1);return [NOM[i%12],2026+Math.floor(i/12)];}
   function bimLabel(B){var a=ym(2*B-1),b=ym(2*B);return a[1]===b[1]?(a[0]+' \u2013 '+b[0]+' '+b[1]):(a[0]+' '+a[1]+' \u2013 '+b[0]+' '+b[1]);}
   function renovInt(nw,M){var E=[],R=[],m;for(m=0;m<=M;m++){E[m]=0;R[m]=0;}for(m=1;m<=M;m++){var p=(m-6>=1)?E[m-6]:0;R[m]=0.6*p;E[m]=(nw[m]||0)+0.6*p;}var cum=0,pr=0,o=[];for(m=0;m<=M;m++)o[m]=0;for(m=1;m<=M;m++){cum+=R[m];var c=Math.round(cum);o[m]=c-pr;pr=c;}return o;}
   function vendor(start,ramp,scen,isMax,M){var r=RATES[scen],steady=r.steady,sp=isMax?1:3,m,cm,jm;var nw=[];for(m=0;m<=M;m++)nw[m]=0;for(cm=start;cm<=M;cm++){jm=cm-start+1;if(jm>=sp&&(jm-sp)%r.pkgEvery===0)nw[cm]=1;}var R=renovInt(nw,M);var V=[],P=[],Rn=[];for(m=0;m<=M;m++){V[m]=0;P[m]=0;Rn[m]=0;}for(cm=start;cm<=M;cm++){jm=cm-start+1;V[cm]=ramp?(jm===1?2:(jm===2?3:steady)):steady;P[cm]=nw[cm];Rn[cm]=R[cm];}return {V:V,P:P,Rn:Rn};}
+  function fay(start){return Math.ceil((start+11)/12);}
+  function avYear(start,scen,y){var F=fay(start);if(y<F)return 0;if(scen==='minimo')return 1;return y===1?1:2;}
   function cv(v){return v===0?'<td class="money" style="color:var(--gray);">0</td>':'<td class="money">'+v+'</td>';}
   function rcv(v){return v===0?'<td class="money" style="color:var(--gray);">0</td>':'<td class="money" style="color:var(--gold-light);font-weight:600;">'+v+'</td>';}
   function renderBim(){
@@ -327,8 +331,17 @@ window.addEventListener('scroll',()=>{if(window.scrollY>500)nav.classList.add('v
       setTxt('lid-bim-note','8 vuelos charter + 2 paquetes de horas');
     }
   }
+  function renderAv(){
+    var el=document.getElementById('lid-av');if(!el)return;
+    var html='',y,i;
+    for(y=1;y<=5;y++){var lc=avYear(1,cur,y),jc=0;for(i=0;i<JR.length;i++)jc+=avYear(JR[i],cur,y);
+      html+='<tr><td class="mcell">Año '+y+'</td><td style="color:var(--gray);">'+PER[y-1]+'</td><td class="money">'+lc+'</td><td class="money">'+jc+'</td><td class="money strong">'+(lc+jc)+'</td></tr>';}
+    el.innerHTML=html;
+    if(cur==='minimo'){setTxt('lid-av-note','1 por vendedor');setTxt('lid-av-note2','1 avión al año');}
+    else{setTxt('lid-av-note','1 el primer año y 2 por vendedor desde el año 2');setTxt('lid-av-note2','2 aviones al año a partir del año 2 (1 el primer año)');}
+  }
   function renderToggles(){var bs=document.querySelectorAll('.scenario-toggle button');for(var i=0;i<bs.length;i++){if(bs[i].getAttribute('data-scen')===cur)bs[i].classList.add('active');else bs[i].classList.remove('active');}}
-  function renderAll(){renderTexts();renderBim();renderToggles();}
+  function renderAll(){renderTexts();renderBim();renderAv();renderToggles();}
   window.setScenario=function(s){cur=s;renderAll();};
   if(document.readyState!=='loading')renderAll();else document.addEventListener('DOMContentLoaded',renderAll);
 })();
