@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MM Private Aviation — Plan de Negocio</title>
@@ -636,7 +640,7 @@ tbody tr.row-total td {
       <p class="section-label">Objetivos por posición</p>
       <h2 class="section-title">Metas por Rol</h2>
     </div>
-    <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')">Meta</button></div>
+    <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')" class="active">Meta</button></div>
     <div class="roles-grid">
 
       <div class="role-card fade-in">
@@ -703,7 +707,7 @@ tbody tr.row-total td {
     <p class="section-intro fade-in" style="max-width:760px;">
       México es el <strong style="color:var(--white)">segundo mercado de aviación de negocios de Latinoamérica</strong>. Tu meta a equipo completo —unos <strong style="color:var(--white)"><span id="neg-fpkg2">84</span> paquetes nuevos al año</strong>— representan apenas el <strong style="color:var(--white)"><span id="neg-fpct2">8–14%</span> del mercado nacional de paquetes prepagados</strong>. La meta no depende de hacer crecer el mercado, sino de capturar una porción pequeña y muy alcanzable de lo que ya existe.
     </p>
-    <div class="scenario-toggle fade-in" style="justify-content:center;display:flex;"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')">Meta</button></div>
+    <div class="scenario-toggle fade-in" style="justify-content:center;display:flex;"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')" class="active">Meta</button></div>
     <div style="display:flex; flex-direction:column; align-items:center; gap:14px; margin-top:40px;" class="fade-in">
       <div style="width:100%; max-width:760px; background:var(--bg-card-alt); border:1px solid var(--gold-border); border-radius:14px; padding:22px 24px; text-align:center;">
         <div style="color:var(--white); font-weight:700; font-size:17px;">Flota de aviones de negocios en México</div>
@@ -742,7 +746,7 @@ tbody tr.row-total td {
       Montos en <strong style="color:var(--white)">USD</strong>. Equipo <strong style="color:var(--white)">escalonado</strong>: cada vendedor entra ~cada 7 meses, no todos al inicio (tope: Líder + 5). Incluye vuelos + paquetes + renovaciones al 60%. El avión es meta anual por vendedor, sin mes fijo, y se muestra como upside. Max no vende aviones. TC 17.5.
     </p>
 
-    <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')">Meta</button></div>
+    <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')" class="active">Meta</button></div>
     <div class="table-wrap fade-in">
       <table>
         <thead>
@@ -833,7 +837,7 @@ tbody tr.row-total td {
       El detalle bimestre por bimestre de los primeros 2 años. Las primeras columnas muestran <strong style="color:var(--white)">exactamente qué debe vender todo el equipo</strong> (Max, Líder y Juniors) en cada bimestre; las siguientes traducen esas ventas a dinero. Cada renglón es verificable: <strong style="color:var(--white)">unidades × precio = utilidad operativa</strong>. Montos en USD, base <strong style="color:var(--white)">sin avión</strong> (el avión es upside anual, 1 por vendedor, sin mes fijo). TC 17.5.
     </p>
 
-    <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')">Meta</button></div>
+    <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')" class="active">Meta</button></div>
     <div class="table-wrap fade-in">
       <table style="min-width:920px;">
         <thead>
@@ -1042,7 +1046,7 @@ tbody tr.row-total td {
     </p>
 
     <h3 style="font-family:'Cinzel',serif;color:var(--white);font-size:19px;margin:40px 0 16px;" class="fade-in">1 · Operación — vuelos charter y paquetes de horas</h3>
-    <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')">Meta</button></div>
+    <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')" class="active">Meta</button></div>
     <div class="table-wrap fade-in">
       <table style="min-width:840px;">
         <thead>
@@ -1202,7 +1206,7 @@ tbody tr.row-total td {
       <p class="section-label">Salud del negocio</p>
       <h2 class="section-title">Presupuesto Operativo (15%)</h2>
     </div>
-    <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')">Meta</button></div>
+    <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')" class="active">Meta</button></div>
     <div class="table-wrap fade-in">
       <table>
         <thead>
