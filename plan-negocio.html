@@ -1335,7 +1335,7 @@ window.addEventListener('scroll', () => {
   function ops(o,m){return o.V[m]*VUELO+(o.P[m]+o.Rn[m])*PAQ;}
   function avmon(s,M){var a=[];for(var k=0;k<6;k++){var mm=s+11+12*k;if(mm<=M)a.push(mm);}return a;}
   function fay(start){return Math.ceil((start+11)/12);}
-  function avYear(start,scen,y){var F=fay(start);if(y<F)return 0;if(scen==='minimo')return 1;return y===1?1:2;}
+  function avYear(start,scen,y){var F=fay(start);return y<F?0:1;}
   function usd(v){return '$'+Math.round(v/TC).toLocaleString('en-US');}
   function usdK(v){return '$'+Math.round(v/TC/1000)+'K';}
   function setTxt(id,t){var e=document.getElementById(id);if(e)e.innerHTML=t;}
@@ -1456,10 +1456,10 @@ window.addEventListener('scroll', () => {
     }
     html+='<tr class="row-total"><td>Total 5 años</td><td style="border-left:1px solid var(--gold-border);">'+TL+'</td><td>'+TJ+'</td><td>'+TC2+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(TU)+'</td><td>−'+usd(T15)+'</td><td>−'+usd(TCo)+'</td><td>'+usd(TN)+'</td></tr>';
     el.innerHTML=html;
-    setTxt('neg-av-note',cur==='minimo'?'1 avión al año':'2 aviones al año desde el año 2 (1 el primer año)');
-    setTxt('neg-av-lid',cur==='minimo'?'1 avión al año (meta anual, sin mes fijo)':'2 aviones al año desde el año 2 (1 el primer año)');
-    setTxt('neg-av-jr',cur==='minimo'?'1 avión al año (meta anual)':'2 aviones al año desde el año 2');
-    setTxt('neg-av-prose',cur==='minimo'?'1 avión al año':'2 aviones al año a partir del año 2');
+    setTxt('neg-av-note','1 avión al año');
+    setTxt('neg-av-lid','1 avión al año (meta anual, sin mes fijo)');
+    setTxt('neg-av-jr','1 avión al año (meta anual)');
+    setTxt('neg-av-prose','1 avión al año');
   }
   function renderFunnel(){
     var mo=model(cur),p=yearAgg(mo,4).P,lo=Math.round(p/10),hi=Math.round(p/6),pct=lo+'–'+hi+'%';

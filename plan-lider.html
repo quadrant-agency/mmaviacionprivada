@@ -294,7 +294,7 @@ window.addEventListener('scroll',()=>{if(window.scrollY>500)nav.classList.add('v
   function renovInt(nw,M){var E=[],R=[],m;for(m=0;m<=M;m++){E[m]=0;R[m]=0;}for(m=1;m<=M;m++){var p=(m-6>=1)?E[m-6]:0;R[m]=0.6*p;E[m]=(nw[m]||0)+0.6*p;}var cum=0,pr=0,o=[];for(m=0;m<=M;m++)o[m]=0;for(m=1;m<=M;m++){cum+=R[m];var c=Math.round(cum);o[m]=c-pr;pr=c;}return o;}
   function vendor(start,ramp,scen,isMax,M){var r=RATES[scen],steady=r.steady,sp=isMax?1:3,m,cm,jm;var nw=[];for(m=0;m<=M;m++)nw[m]=0;for(cm=start;cm<=M;cm++){jm=cm-start+1;if(jm>=sp&&(jm-sp)%r.pkgEvery===0)nw[cm]=1;}var R=renovInt(nw,M);var V=[],P=[],Rn=[];for(m=0;m<=M;m++){V[m]=0;P[m]=0;Rn[m]=0;}for(cm=start;cm<=M;cm++){jm=cm-start+1;V[cm]=ramp?(jm===1?2:(jm===2?3:steady)):steady;P[cm]=nw[cm];Rn[cm]=R[cm];}return {V:V,P:P,Rn:Rn};}
   function fay(start){return Math.ceil((start+11)/12);}
-  function avYear(start,scen,y){var F=fay(start);if(y<F)return 0;if(scen==='minimo')return 1;return y===1?1:2;}
+  function avYear(start,scen,y){var F=fay(start);return y<F?0:1;}
   function cv(v){return v===0?'<td class="money" style="color:var(--gray);">0</td>':'<td class="money">'+v+'</td>';}
   function rcv(v){return v===0?'<td class="money" style="color:var(--gray);">0</td>':'<td class="money" style="color:var(--gold-light);font-weight:600;">'+v+'</td>';}
   function renderBim(){
@@ -341,11 +341,9 @@ window.addEventListener('scroll',()=>{if(window.scrollY>500)nav.classList.add('v
     for(y=1;y<=5;y++){var lc=avYear(1,cur,y),jc=0;for(i=0;i<JR.length;i++)jc+=avYear(JR[i],cur,y);
       html+='<tr><td class="mcell">Año '+y+'</td><td style="color:var(--gray);">'+PER[y-1]+'</td><td class="money">'+lc+'</td><td class="money">'+jc+'</td><td class="money strong">'+(lc+jc)+'</td></tr>';}
     el.innerHTML=html;
-    if(cur==='minimo'){setTxt('lid-av-note','1 por vendedor');setTxt('lid-av-note2','1 avión al año');}
-    else{setTxt('lid-av-note','1 el primer año y 2 por vendedor desde el año 2');setTxt('lid-av-note2','2 aviones al año a partir del año 2 (1 el primer año)');}
-    var av1=(cur==='minimo')?'1 avión al año':'2 aviones al año a partir del año 2';
-    setTxt('lid-av-anual',av1);setTxt('lid-av-jr',av1);
-    setTxt('lid-av-hero-n',cur==='minimo'?'1':'2');setTxt('lid-av-hero-l',cur==='minimo'?'avión al año (meta)':'aviones/año (desde año 2)');
+    setTxt('lid-av-note','1 por vendedor');setTxt('lid-av-note2','1 avión al año');
+    setTxt('lid-av-anual','1 avión al año');setTxt('lid-av-jr','1 avión al año');
+    setTxt('lid-av-hero-n','1');setTxt('lid-av-hero-l','avión al año (meta)');
   }
   function renderToggles(){var bs=document.querySelectorAll('.scenario-toggle button');for(var i=0;i<bs.length;i++){if(bs[i].getAttribute('data-scen')===cur)bs[i].classList.add('active');else bs[i].classList.remove('active');}}
   function renderAll(){renderTexts();renderBim();renderAv();renderToggles();}
