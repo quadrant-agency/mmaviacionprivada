@@ -701,8 +701,9 @@ tbody tr.row-total td {
       <h2 class="section-title">El tamaño de la oportunidad</h2>
     </div>
     <p class="section-intro fade-in" style="max-width:760px;">
-      México es el <strong style="color:var(--white)">segundo mercado de aviación de negocios de Latinoamérica</strong>. Tu meta a 5 vendedores —unos 30 paquetes nuevos al año— representa apenas el <strong style="color:var(--white)">3–5% del mercado nacional de paquetes prepagados</strong>. La meta no depende de hacer crecer el mercado, sino de capturar una porción pequeña y muy alcanzable de lo que ya existe.
+      México es el <strong style="color:var(--white)">segundo mercado de aviación de negocios de Latinoamérica</strong>. Tu meta a equipo completo —unos <strong style="color:var(--white)"><span id="neg-fpkg2">84</span> paquetes nuevos al año</strong>— representan apenas el <strong style="color:var(--white)"><span id="neg-fpct2">8–14%</span> del mercado nacional de paquetes prepagados</strong>. La meta no depende de hacer crecer el mercado, sino de capturar una porción pequeña y muy alcanzable de lo que ya existe.
     </p>
+    <div class="scenario-toggle fade-in" style="justify-content:center;display:flex;"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')">Meta</button></div>
     <div style="display:flex; flex-direction:column; align-items:center; gap:14px; margin-top:40px;" class="fade-in">
       <div style="width:100%; max-width:760px; background:var(--bg-card-alt); border:1px solid var(--gold-border); border-radius:14px; padding:22px 24px; text-align:center;">
         <div style="color:var(--white); font-weight:700; font-size:17px;">Flota de aviones de negocios en México</div>
@@ -721,8 +722,8 @@ tbody tr.row-total td {
         <div style="color:var(--gray); font-size:14px; margin-top:4px;">≈ 600–1,000 (todo el país)</div>
       </div>
       <div style="width:42%; max-width:340px; background:rgba(201,168,76,0.14); border:1.5px solid var(--gold); border-radius:14px; padding:22px 24px; text-align:center; box-shadow:0 0 24px rgba(201,168,76,0.15);">
-        <div style="color:var(--gold-light); font-weight:700; font-size:17px;">Tu meta a 5 vendedores</div>
-        <div style="color:var(--gold); font-size:14px; margin-top:4px;">≈ 30/año · 3–5% del mercado</div>
+        <div style="color:var(--gold-light); font-weight:700; font-size:17px;">Tu meta · equipo completo</div>
+        <div style="color:var(--gold); font-size:14px; margin-top:4px;">≈ <span id="neg-fpkg">84</span>/año · <span id="neg-fpct">8–14%</span> del mercado</div>
       </div>
     </div>
     <p style="font-size:12px; color:var(--gray); margin-top:24px; text-align:center;" class="fade-in">Estimaciones de mercado de referencia para dimensionar la oportunidad.</p>
@@ -1322,7 +1323,7 @@ window.addEventListener('scroll', () => {
   var NOM=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
   var PER=['Jun 2026 – May 2027','Jun 2027 – May 2028','Jun 2028 – May 2029','Jun 2029 – May 2030','Jun 2030 – May 2031'];
   var AVL=0.30*0.85*AVION, AVJ=0.20*0.85*AVION, AVO=0.10*0.85*AVION;
-  var cur='minimo';
+  var cur='meta';
   function ym(m){var i=5+(m-1);return [NOM[i%12],2026+Math.floor(i/12)];}
   function bimLabel(B){var a=ym(2*B-1),b=ym(2*B);return a[1]===b[1]?(a[0]+' – '+b[0]+' '+b[1]):(a[0]+' '+a[1]+' – '+b[0]+' '+b[1]);}
   function renovInt(nw,M){var E=[],R=[],m;for(m=0;m<=M;m++){E[m]=0;R[m]=0;}for(m=1;m<=M;m++){var p=(m-6>=1)?E[m-6]:0;R[m]=0.6*p;E[m]=(nw[m]||0)+0.6*p;}var cum=0,pr=0,o=[];for(m=0;m<=M;m++)o[m]=0;for(m=1;m<=M;m++){cum+=R[m];var c=Math.round(cum);o[m]=c-pr;pr=c;}return o;}
@@ -1453,8 +1454,12 @@ window.addEventListener('scroll', () => {
     el.innerHTML=html;
     setTxt('neg-av-note',cur==='minimo'?'1 avión al año':'2 aviones al año desde el año 2 (1 el primer año)');
   }
+  function renderFunnel(){
+    var mo=model(cur),p=yearAgg(mo,4).P,lo=Math.round(p/10),hi=Math.round(p/6),pct=lo+'–'+hi+'%';
+    setTxt('neg-fpkg',p);setTxt('neg-fpkg2',p);setTxt('neg-fpct',pct);setTxt('neg-fpct2',pct);
+  }
   function renderToggles(){var bs=document.querySelectorAll('.scenario-toggle button');for(var i=0;i<bs.length;i++){if(bs[i].getAttribute('data-scen')===cur)bs[i].classList.add('active');else bs[i].classList.remove('active');}}
-  function renderAll(){renderRoles();renderProy();renderBim();renderOp();renderTot();renderAv();render15();renderToggles();}
+  function renderAll(){renderRoles();renderProy();renderBim();renderOp();renderTot();renderAv();render15();renderFunnel();renderToggles();}
   window.setScenario=function(s){cur=s;renderAll();};
   if(document.readyState!=='loading')renderAll();else document.addEventListener('DOMContentLoaded',renderAll);
 })();

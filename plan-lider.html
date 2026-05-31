@@ -284,7 +284,7 @@ window.addEventListener('scroll',()=>{if(window.scrollY>500)nav.classList.add('v
   var RATES={minimo:{steady:3,pkgEvery:2},meta:{steady:4,pkgEvery:1}};
   var PER=['Jun 2026 – May 2027','Jun 2027 – May 2028','Jun 2028 – May 2029','Jun 2029 – May 2030','Jun 2030 – May 2031'];
   var NOM=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-  var cur='minimo';
+  var cur='meta';
   function ym(m){var i=5+(m-1);return [NOM[i%12],2026+Math.floor(i/12)];}
   function bimLabel(B){var a=ym(2*B-1),b=ym(2*B);return a[1]===b[1]?(a[0]+' \u2013 '+b[0]+' '+b[1]):(a[0]+' '+a[1]+' \u2013 '+b[0]+' '+b[1]);}
   function renovInt(nw,M){var E=[],R=[],m;for(m=0;m<=M;m++){E[m]=0;R[m]=0;}for(m=1;m<=M;m++){var p=(m-6>=1)?E[m-6]:0;R[m]=0.6*p;E[m]=(nw[m]||0)+0.6*p;}var cum=0,pr=0,o=[];for(m=0;m<=M;m++)o[m]=0;for(m=1;m<=M;m++){cum+=R[m];var c=Math.round(cum);o[m]=c-pr;pr=c;}return o;}
