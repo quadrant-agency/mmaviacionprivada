@@ -59,23 +59,6 @@ h1,h2,h3,h4{font-family:'Cinzel',serif;font-weight:600;letter-spacing:0.02em;}
 .mcard-note{font-size:14px;color:var(--gray-light);margin-top:12px;}
 .rule-box{margin-top:34px;background:var(--bg-card-alt);border-left:3px solid var(--gold);border-radius:8px;padding:22px 26px;font-size:16px;color:var(--gray-light);}
 .rule-box b{color:var(--white);}
-.funnels-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-bottom:6px;}
-@media(max-width:760px){.funnels-grid{grid-template-columns:1fr;}}
-.funnel-card{background:var(--bg-card);border:1px solid var(--gold-border);border-radius:14px;padding:30px 28px;position:relative;overflow:hidden;transition:border-color .3s,transform .3s;}
-.funnel-card:hover{border-color:var(--gold);transform:translateY(-4px);}
-.funnel-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
-.funnel-kicker{font-family:'Cinzel',serif;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
-.funnel-name{font-family:'Cinzel',serif;font-size:25px;color:var(--white);font-weight:700;line-height:1.1;}
-.funnel-desc{font-size:14px;color:var(--gray-light);margin-top:12px;line-height:1.55;}
-.funnel-steps{margin:28px 0 4px;display:flex;flex-direction:column;gap:12px;}
-.funnel-step{position:relative;display:flex;align-items:center;min-height:46px;}
-.funnel-step .fs-bar{position:absolute;left:0;top:0;bottom:0;width:var(--w);background:linear-gradient(90deg,rgba(201,168,76,0.22),rgba(201,168,76,0.06));border:1px solid var(--gold-border);border-radius:8px;transition:width .5s ease;}
-.funnel-step-final .fs-bar{background:linear-gradient(90deg,rgba(201,168,76,0.45),rgba(201,168,76,0.18));border-color:var(--gold);}
-.funnel-step .fs-label{position:relative;z-index:2;padding-left:16px;font-size:14px;color:var(--gray-light);}
-.funnel-step-final .fs-label{color:var(--white);font-weight:600;}
-.funnel-step .fs-val{position:relative;z-index:2;margin-left:auto;padding-right:16px;font-family:'Cinzel',serif;font-size:17px;color:var(--gold);font-weight:700;}
-.funnel-foot{margin-top:18px;padding-top:16px;border-top:1px solid var(--gold-border);font-size:14px;color:var(--gray-light);}
-.funnel-foot b{color:var(--white);}
 .rg-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:14px;}
 @media(max-width:720px){.rg-grid{grid-template-columns:repeat(2,1fr);}}
 .rg-item{background:var(--bg-card);border:1px solid var(--gold-border);border-radius:12px;padding:22px 14px;text-align:center;}
@@ -130,7 +113,6 @@ th.right{text-align:right;}
   <div class="nav-links">
     <a href="#mensuales">Metas mensuales</a>
     <a href="#anuales">Metas anuales</a>
-    <a href="#embudos">Embudos</a>
     <a href="#renovaciones">Renovaciones</a>
     <a href="#equipo">Equipo</a>
     <a href="#tabla">Tabla</a>
@@ -190,49 +172,6 @@ th.right{text-align:right;}
         <li><b>Responder por el equipo:</b> la meta total del rol es la producción propia más la del equipo a cargo.</li>
       </ul>
     </div>
-  </div>
-</section>
-
-<section class="section" id="embudos">
-  <div class="container">
-    <div class="section-label fade-in">De dónde salen los números</div>
-    <h2 class="section-title fade-in">Los dos embudos</h2>
-    <p class="section-intro fade-in">Cada meta mensual no es un número arbitrario: es el resultado de un embudo. Hay dos líneas de negocio con dinámicas distintas, así que hay dos embudos. Entender cada uno es entender por qué la cuota es la que es —y dónde está la palanca para crecer.</p>
-    <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')" class="active">Meta</button></div>
-
-    <div class="funnels-grid fade-in">
-
-      <div class="funnel-card">
-        <div class="funnel-head">
-          <div class="funnel-kicker">Embudo 1</div>
-          <div class="funnel-name">Vuelos charter</div>
-          <div class="funnel-desc">Venta directa, ciclo corto. El piso estable del negocio: contactas, cotizas, cierras en días.</div>
-        </div>
-        <div class="funnel-steps">
-          <div class="funnel-step" style="--w:100%;"><span class="fs-bar"></span><span class="fs-label">Cotizaciones enviadas</span><span class="fs-val" id="emb-v-top">~12/mes</span></div>
-          <div class="funnel-step" style="--w:62%;"><span class="fs-bar"></span><span class="fs-label">En negociación</span><span class="fs-val" id="emb-v-mid">~6/mes</span></div>
-          <div class="funnel-step funnel-step-final" style="--w:33%;"><span class="fs-bar"></span><span class="fs-label">Vuelos cerrados</span><span class="fs-val" id="emb-v-out">4/mes</span></div>
-        </div>
-        <div class="funnel-foot">Cierre típico <b id="emb-v-rate">~33%</b>. Es la meta mensual del Líder: <b id="emb-v-goal">4 vuelos charter/mes</b>.</div>
-      </div>
-
-      <div class="funnel-card">
-        <div class="funnel-head">
-          <div class="funnel-kicker">Embudo 2</div>
-          <div class="funnel-name">Paquetes de horas</div>
-          <div class="funnel-desc">Ultra high ticket, ciclo largo. El cuello de botella no está arriba (hay volumen de leads) sino en el filtro: de crudo a calificado.</div>
-        </div>
-        <div class="funnel-steps">
-          <div class="funnel-step" style="--w:100%;"><span class="fs-bar"></span><span class="fs-label">Leads crudos</span><span class="fs-val" id="emb-p-raw">muchos</span></div>
-          <div class="funnel-step" style="--w:30%;"><span class="fs-bar"></span><span class="fs-label">Prospectos calificados</span><span class="fs-val" id="emb-p-qual">~10/mes</span></div>
-          <div class="funnel-step funnel-step-final" style="--w:10%;"><span class="fs-bar"></span><span class="fs-label">Paquetes cerrados</span><span class="fs-val" id="emb-p-out">1/mes</span></div>
-        </div>
-        <div class="funnel-foot">Cierre hoy <b>~10%</b> → para cerrar <b id="emb-p-goal">1 paquete al mes</b> necesitas <b id="emb-p-need">~10 prospectos calificados/mes</b>.</div>
-      </div>
-
-    </div>
-
-    <div class="rule-box fade-in"><b>La palanca está en el embudo 2.</b> El de vuelos charter ya funciona con proceso simple. El de paquetes vive o muere por dos perillas: <b>calidad del lead</b> (subir el % que califica con targeting de precisión, no volumen) y <b>tasa de cierre</b> (hoy 10% — con pipeline y seguimiento real puede subir). Subir el cierre de 10% a 20% reduce a la mitad los prospectos que necesitas para la misma meta.</div>
   </div>
 </section>
 
@@ -394,20 +333,12 @@ window.addEventListener('scroll',()=>{if(window.scrollY>500)nav.classList.add('v
       setTxt('lid-jr3plus','3 vuelos charter al mes + 1 paquete nuevo cada 2 meses.');
       setTxt('lid-bim-note','5 a 6 vuelos charter + 1 paquete de horas');
       setTxt('lid-rule-cad','1 cada 2 meses');
-      setTxt('emb-v-top','~9/mes');setTxt('emb-v-mid','~5/mes');setTxt('emb-v-out','3/mes');
-      setTxt('emb-v-rate','~33%');setTxt('emb-v-goal','3 vuelos charter/mes');
-      setTxt('emb-p-qual','~5/mes');setTxt('emb-p-out','1 cada 2 meses');
-      setTxt('emb-p-goal','1 paquete cada 2 meses');setTxt('emb-p-need','~5 prospectos calificados/mes');
     }else{
       setTxt('lid-m3plus','4 vuelos charter al mes + 1 paquete al mes.');
       setTxt('lid-anual','4 vuelos charter cada mes + 1 paquete al mes (\u224812 paquetes nuevos al a\u00f1o)');
       setTxt('lid-jr3plus','4 vuelos charter al mes + 1 paquete nuevo al mes.');
       setTxt('lid-bim-note','8 vuelos charter + 2 paquetes de horas');
       setTxt('lid-rule-cad','1 al mes');
-      setTxt('emb-v-top','~12/mes');setTxt('emb-v-mid','~6/mes');setTxt('emb-v-out','4/mes');
-      setTxt('emb-v-rate','~33%');setTxt('emb-v-goal','4 vuelos charter/mes');
-      setTxt('emb-p-qual','~10/mes');setTxt('emb-p-out','1/mes');
-      setTxt('emb-p-goal','1 paquete al mes');setTxt('emb-p-need','~10 prospectos calificados/mes');
     }
   }
   function renderAv(){
