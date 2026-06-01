@@ -153,7 +153,7 @@ th.right{text-align:right;}
         <div class="mcard-note"><b style="color:var(--white)"><span id="lid-m3plus">3 vuelos charter al mes + 1 paquete cada 2 meses.</span></b> El paquete es de cliente nuevo. Esta cuota se mantiene todos los meses.</div>
       </div>
     </div>
-    <div class="rule-box fade-in">El paquete de la cuota (1 cada 2 meses) se refiere siempre a <b>clientes nuevos</b>. Las renovaciones de clientes existentes <b>no cuentan dentro de esta meta</b>: son adicionales y se suman por encima de la cuota.</div>
+    <div class="rule-box fade-in">El paquete de la cuota (<span id="lid-rule-cad">1 cada 2 meses</span>) se refiere siempre a <b>clientes nuevos</b>. Las renovaciones de clientes existentes <b>no cuentan dentro de esta meta</b>: son adicionales y se suman por encima de la cuota.</div>
   </div>
 </section>
 
@@ -332,11 +332,13 @@ window.addEventListener('scroll',()=>{if(window.scrollY>500)nav.classList.add('v
       setTxt('lid-anual','3 vuelos charter cada mes + 1 paquete cada 2 meses (\u22486 paquetes nuevos al a\u00f1o)');
       setTxt('lid-jr3plus','3 vuelos charter al mes + 1 paquete nuevo cada 2 meses.');
       setTxt('lid-bim-note','5 a 6 vuelos charter + 1 paquete de horas');
+      setTxt('lid-rule-cad','1 cada 2 meses');
     }else{
       setTxt('lid-m3plus','4 vuelos charter al mes + 1 paquete al mes.');
       setTxt('lid-anual','4 vuelos charter cada mes + 1 paquete al mes (\u224812 paquetes nuevos al a\u00f1o)');
       setTxt('lid-jr3plus','4 vuelos charter al mes + 1 paquete nuevo al mes.');
       setTxt('lid-bim-note','8 vuelos charter + 2 paquetes de horas');
+      setTxt('lid-rule-cad','1 al mes');
     }
   }
   function renderAv(){
