@@ -496,11 +496,6 @@ tbody tr.row-total td {
   .nav-links { display: none; }
   thead th, tbody td { padding: 10px 12px; font-size: 12px; }
 }
-.scenario-toggle{display:inline-flex;align-items:center;gap:8px;margin:0 0 22px;flex-wrap:wrap;}
-.scenario-toggle .st-label{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);margin-right:2px;}
-.scenario-toggle button{font-family:'Manrope',sans-serif;font-size:13px;font-weight:600;padding:9px 18px;border-radius:24px;border:1px solid var(--gold-border);background:var(--bg-card);color:var(--gray-light);cursor:pointer;transition:all .2s;}
-.scenario-toggle button:hover{border-color:var(--gold);color:var(--white);}
-.scenario-toggle button.active{background:var(--gold);color:#0A0C10;border-color:var(--gold);}
 </style>
 </head>
 <body>
@@ -527,11 +522,11 @@ tbody tr.row-total td {
   <p class="hero-sub">Proyección operativa y financiera · 5 años</p>
   <div class="hero-meta">
     <div class="hero-meta-item">
-      <span class="hero-meta-number">$4M+</span>
+      <span class="hero-meta-number" id="neg-hero-util">$3.7M</span>
       <span class="hero-meta-label">Utilidad neta 5 años</span>
     </div>
     <div class="hero-meta-item">
-      <span class="hero-meta-number">Y4</span>
+      <span class="hero-meta-number" id="neg-hero-millon">Año 5</span>
       <span class="hero-meta-label">$1M USD / año</span>
     </div>
     <div class="hero-meta-item">
@@ -643,14 +638,14 @@ tbody tr.row-total td {
       <p class="section-label">Objetivos por posición</p>
       <h2 class="section-title">Metas por Rol</h2>
     </div>
-    <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')" class="active">Meta</button></div>
+    
     <div class="roles-grid">
 
       <div class="role-card fade-in">
         <div class="role-name">Max</div>
         <div class="role-subtitle">Dueño · Operador</div>
         <ul class="role-goals">
-          <li><span id="neg-max-goal">1 paquete cada 2 meses + 3 vuelos charter por mes</span></li>
+          <li><span id="neg-max-goal">1 paquete al trimestre + 4 vuelos charter por mes</span></li>
           <li>Conserva su cartera (renovaciones al 60%)</li>
           <li>Sin meta de avión</li>
           <li>Sin comisión — su producción va directo a utilidades de la empresa</li>
@@ -666,11 +661,11 @@ tbody tr.row-total td {
         <div class="role-subtitle">Vendedor Principal · Fase Solo → Equipo</div>
         <ul class="role-goals">
           <li>Ramp: M1 = 2 vuelos charter, M2 = 3 vuelos charter</li>
-          <li><span id="neg-lid-goal">Cuota (M3+): 1 paquete cada 2 meses + 3 vuelos charter/mes</span></li>
+          <li><span id="neg-lid-goal">Cuota (M3+): 1 paquete al bimestre + 4 vuelos charter/mes</span></li>
           <li>Conserva su cartera (renovaciones al 60%, adicionales)</li>
           <li><span id="neg-av-lid">Cierra los aviones del equipo: 1 el año 1, 3 al año desde el año 2</span></li>
           <li>Desde M7: incorpora y dirige al equipo</li>
-          <li>Suma 1 Junior nuevo cada ~7 meses (hasta 5)</li>
+          <li>Suma 1 Junior nuevo cada ~7 meses (primera meta: llegar a 5)</li>
         </ul>
         <div class="role-earning">
           <span class="label">Ingreso base Y1 → Y5 (sin avión)</span>
@@ -683,7 +678,7 @@ tbody tr.row-total td {
         <div class="role-subtitle">Template · Aplica a todos los Jrs</div>
         <ul class="role-goals">
           <li>Ramp: propio M1 = 2V, M2 = 3V</li>
-          <li><span id="neg-jr-goal">Cuota (propio M3+): 1 paquete cada 2 meses + 3 vuelos charter/mes</span></li>
+          <li><span id="neg-jr-goal">Cuota (propio M3+): 1 paquete al trimestre + 4 vuelos charter/mes</span></li>
           <li>Conserva su cartera (renovaciones al 60%)</li>
           <li><span id="neg-av-jr">Bono de referido: $10,000 USD si refiere un cliente que compra avión</span></li>
           <li>Reporta al Líder</li>
@@ -708,13 +703,13 @@ tbody tr.row-total td {
       <h2 class="section-title">El tamaño de la oportunidad</h2>
     </div>
     <p class="section-intro fade-in" style="max-width:760px;">
-      México es el <strong style="color:var(--white)">segundo mercado de aviación de negocios de Latinoamérica</strong>. Tu meta a equipo completo —unos <strong style="color:var(--white)"><span id="neg-fpkg2">84</span> paquetes nuevos al año</strong>— representan apenas el <strong style="color:var(--white)"><span id="neg-fpct2">8–14%</span> del mercado nacional de paquetes prepagados</strong>. La meta no depende de hacer crecer el mercado, sino de capturar una porción pequeña y muy alcanzable de lo que ya existe.
+      México es el <strong style="color:var(--white)">segundo mercado de aviación de negocios de Latinoamérica</strong> (≈ 1,030 jets, solo detrás de Brasil). A partir de un <strong style="color:var(--white)">censo bottom-up de 16 operadores con producto verificable</strong>, el parque nacional ronda <strong style="color:var(--white)">~400 contratos activos</strong> (rango 250–550). La meta del equipo —<strong style="color:var(--white)"><span id="neg-fpkg2">30</span> paquetes nuevos al año</strong> con Max, Líder y 5 Juniors— equivale a <strong style="color:var(--white)"><span id="neg-fpct2">~5–12%</span> del parque</strong>: una porción de un dígito a dos dígitos bajos, defendible y alcanzable. No depende de hacer crecer el mercado, sino de capturar una parte pequeña de lo que ya existe.
     </p>
-    <div class="scenario-toggle fade-in" style="justify-content:center;display:flex;"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')" class="active">Meta</button></div>
+    
     <div style="display:flex; flex-direction:column; align-items:center; gap:14px; margin-top:40px;" class="fade-in">
       <div style="width:100%; max-width:760px; background:var(--bg-card-alt); border:1px solid var(--gold-border); border-radius:14px; padding:22px 24px; text-align:center;">
         <div style="color:var(--white); font-weight:700; font-size:17px;">Flota de aviones de negocios en México</div>
-        <div style="color:var(--gray); font-size:14px; margin-top:4px;">≈ 600–900 aviones · 2° de Latinoamérica</div>
+        <div style="color:var(--gray); font-size:14px; margin-top:4px;">≈ 1,030 jets · 2° de Latinoamérica (Brasil 1° con 1,103)</div>
       </div>
       <div style="width:84%; max-width:640px; background:var(--bg-card-alt); border:1px solid var(--gold-border); border-radius:14px; padding:22px 24px; text-align:center;">
         <div style="color:var(--white); font-weight:700; font-size:17px;">Disponibles para charter (AOC / managed)</div>
@@ -725,12 +720,12 @@ tbody tr.row-total td {
         <div style="color:var(--gray); font-size:14px; margin-top:4px;">≈ 70,000–120,000 horas</div>
       </div>
       <div style="width:54%; max-width:420px; background:var(--bg-card-alt); border:1px solid var(--gold-border); border-radius:14px; padding:22px 24px; text-align:center;">
-        <div style="color:var(--white); font-weight:700; font-size:17px;">Paquetes prepagados / año</div>
-        <div style="color:var(--gray); font-size:14px; margin-top:4px;">≈ 600–1,000 (todo el país)</div>
+        <div style="color:var(--white); font-weight:700; font-size:17px;">Contratos de paquetes activos (parque nacional)</div>
+        <div style="color:var(--gray); font-size:14px; margin-top:4px;">≈ 400 · rango 250–550</div>
       </div>
       <div style="width:42%; max-width:340px; background:rgba(201,168,76,0.14); border:1.5px solid var(--gold); border-radius:14px; padding:22px 24px; text-align:center; box-shadow:0 0 24px rgba(201,168,76,0.15);">
-        <div style="color:var(--gold-light); font-weight:700; font-size:17px;">Tu meta · equipo completo</div>
-        <div style="color:var(--gold); font-size:14px; margin-top:4px;">≈ <span id="neg-fpkg">84</span>/año · <span id="neg-fpct">8–14%</span> del mercado</div>
+        <div style="color:var(--gold-light); font-weight:700; font-size:17px;">Meta del equipo · Max + Líder + 5</div>
+        <div style="color:var(--gold); font-size:14px; margin-top:4px;">≈ <span id="neg-fpkg">30</span>/año · <span id="neg-fpct">~5–12%</span> del parque</div>
       </div>
     </div>
     <p style="font-size:12px; color:var(--gray); margin-top:24px; text-align:center;" class="fade-in">Estimaciones de mercado de referencia para dimensionar la oportunidad.</p>
@@ -745,7 +740,7 @@ tbody tr.row-total td {
     <div style="display:flex; flex-direction:column; align-items:center; gap:14px; margin-top:36px;" class="fade-in">
       <div style="width:100%; max-width:760px; background:var(--bg-card-alt); border:1px solid var(--gold-border); border-radius:14px; padding:22px 24px; text-align:center;">
         <div style="color:var(--white); font-weight:700; font-size:17px;">Flota de aviones de negocios en México</div>
-        <div style="color:var(--gray); font-size:14px; margin-top:4px;">≈ 600–900 aviones</div>
+        <div style="color:var(--gray); font-size:14px; margin-top:4px;">≈ 1,030 jets</div>
       </div>
       <div style="width:78%; max-width:600px; background:var(--bg-card-alt); border:1px solid var(--gold-border); border-radius:14px; padding:22px 24px; text-align:center;">
         <div style="color:var(--white); font-weight:700; font-size:17px;">Cambian de dueño al año (rotación 7–10%)</div>
@@ -773,10 +768,10 @@ tbody tr.row-total td {
     </div>
 
     <p style="font-size:13px; color:var(--gray); margin-bottom:32px;" class="fade-in">
-      Montos en <strong style="color:var(--white)">USD</strong>. Equipo <strong style="color:var(--white)">escalonado</strong>: cada vendedor entra ~cada 7 meses, no todos al inicio (tope: Líder + 5). Incluye vuelos charter + paquetes + renovaciones al 60%. El avión es meta anual del Líder, sin mes fijo, y se muestra como upside. Max no vende aviones. TC 17.5.
+      Montos en <strong style="color:var(--white)">USD</strong>. Equipo <strong style="color:var(--white)">escalonado</strong>: cada vendedor entra ~cada 7 meses, no todos al inicio (primera meta: Líder + 5). Incluye vuelos charter + paquetes + renovaciones al 60%. El avión es meta anual del Líder, sin mes fijo, y se muestra como upside. Max no vende aviones. TC 17.5.
     </p>
 
-    <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')" class="active">Meta</button></div>
+    
     <div class="table-wrap fade-in">
       <table>
         <thead>
@@ -867,7 +862,7 @@ tbody tr.row-total td {
       El detalle bimestre por bimestre de los primeros 2 años. Las primeras columnas muestran <strong style="color:var(--white)">exactamente qué debe vender todo el equipo</strong> (Max, Líder y Juniors) en cada bimestre; las siguientes traducen esas ventas a dinero. Cada renglón es verificable: <strong style="color:var(--white)">unidades × precio = utilidad operativa</strong>. Montos en USD, base <strong style="color:var(--white)">sin avión</strong> (el avión es upside anual; lo cierra el Líder, sin mes fijo). TC 17.5.
     </p>
 
-    <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')" class="active">Meta</button></div>
+    
     <div class="table-wrap fade-in">
       <table style="min-width:920px;">
         <thead>
@@ -1076,7 +1071,7 @@ tbody tr.row-total td {
     </p>
 
     <h3 style="font-family:'Cinzel',serif;color:var(--white);font-size:19px;margin:40px 0 16px;" class="fade-in">1 · Operación — vuelos charter y paquetes de horas</h3>
-    <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')" class="active">Meta</button></div>
+    
     <div class="table-wrap fade-in">
       <table style="min-width:840px;">
         <thead>
@@ -1196,7 +1191,7 @@ tbody tr.row-total td {
       <p class="section-label">Salud del negocio</p>
       <h2 class="section-title">Presupuesto Operativo (15%)</h2>
     </div>
-    <div class="scenario-toggle fade-in"><span class="st-label">Vista</span><button data-scen="minimo" onclick="setScenario('minimo')">Plan mínimo</button><button data-scen="meta" onclick="setScenario('meta')" class="active">Meta</button></div>
+    
     <div class="table-wrap fade-in">
       <table>
         <thead>
@@ -1236,7 +1231,7 @@ tbody tr.row-total td {
       </div>
       <div class="milestone fade-in">
         <div class="milestone-when">Año 3</div>
-        <div class="milestone-what" id="hito-equipo">Equipo completo (Líder + 5)<br>y primer millón USD acumulado.</div>
+        <div class="milestone-what" id="hito-equipo">Equipo de 5 vendedores produciendo<br>y primer millón USD acumulado.</div>
       </div>
       <div class="milestone fade-in">
         <div class="milestone-when" id="hito-anual-when">Año 4</div>
@@ -1313,61 +1308,54 @@ window.addEventListener('scroll', () => {
 (function(){
   var TC=17.5,VUELO=30000,PAQ=218750,AVION=1750000,BASE=18000;
   var JR=[7,14,21,28,35];
-  var RATES={minimo:{steady:3,every:2},meta:{steady:4,every:1}};
+  var EVERY_LIDER=2, EVERY_JRMAX=3, STEADY=4, SP=3;
   var NOM=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-  var PER=['Jun 2026 – May 2027','Jun 2027 – May 2028','Jun 2028 – May 2029','Jun 2029 – May 2030','Jun 2030 – May 2031'];
-  var AVL=0.30*0.85*AVION, AVJ=0.20*0.85*AVION, AVO=0.10*0.85*AVION;
-  var cur='meta';
+  var PER=['Jun 2026 \u2013 May 2027','Jun 2027 \u2013 May 2028','Jun 2028 \u2013 May 2029','Jun 2029 \u2013 May 2030','Jun 2030 \u2013 May 2031'];
+  var AVL=0.30*0.85*AVION, AVO=0.10*0.85*AVION;
   function ym(m){var i=5+(m-1);return [NOM[i%12],2026+Math.floor(i/12)];}
-  function bimLabel(B){var a=ym(2*B-1),b=ym(2*B);return a[1]===b[1]?(a[0]+' – '+b[0]+' '+b[1]):(a[0]+' '+a[1]+' – '+b[0]+' '+b[1]);}
-  function renovInt(nw,M){var E=[],R=[],m;for(m=0;m<=M;m++){E[m]=0;R[m]=0;}for(m=1;m<=M;m++){var p=(m-6>=1)?E[m-6]:0;R[m]=0.6*p;E[m]=(nw[m]||0)+0.6*p;}var cum=0,pr=0,o=[];for(m=0;m<=M;m++)o[m]=0;for(m=1;m<=M;m++){cum+=R[m];var c=Math.round(cum);o[m]=c-pr;pr=c;}return o;}
-  function vendor(start,ramp,scen,isMax,M){var r=RATES[scen],steady=r.steady,sp=isMax?1:3,m,cm,jm;var nw=[];for(m=0;m<=M;m++)nw[m]=0;for(cm=start;cm<=M;cm++){jm=cm-start+1;if(jm>=sp&&(jm-sp)%r.every===0)nw[cm]=1;}var R=renovInt(nw,M);var V=[],P=[],Rn=[];for(m=0;m<=M;m++){V[m]=0;P[m]=0;Rn[m]=0;}for(cm=start;cm<=M;cm++){jm=cm-start+1;V[cm]=ramp?(jm===1?2:(jm===2?3:steady)):steady;P[cm]=nw[cm];Rn[cm]=R[cm];}return {V:V,P:P,Rn:Rn};}
+  function bimLabel(B){var a=ym(2*B-1),b=ym(2*B);return a[1]===b[1]?(a[0]+' \u2013 '+b[0]+' '+b[1]):(a[0]+' '+a[1]+' \u2013 '+b[0]+' '+b[1]);}
+  function renovInt(nw,M){var R=[],m,a,k,rm;for(m=0;m<=M;m++)R[m]=0;for(a=1;a<=M;a++){if(!nw[a])continue;for(k=1;k<=5;k++){rm=a+6*k;if(rm>M)break;R[rm]+=nw[a]*Math.pow(0.6,k);}}var cum=0,pr=0,o=[];for(m=0;m<=M;m++)o[m]=0;for(m=1;m<=M;m++){cum+=R[m];var c=Math.round(cum);o[m]=c-pr;pr=c;}return o;}
+  function vendor(start,ramp,every,M){var m,cm,jm;var nw=[];for(m=0;m<=M;m++)nw[m]=0;for(cm=start;cm<=M;cm++){jm=cm-start+1;if(jm>=SP&&(jm-SP)%every===0)nw[cm]=1;}var R=renovInt(nw,M);var V=[],P=[],Rn=[];for(m=0;m<=M;m++){V[m]=0;P[m]=0;Rn[m]=0;}for(cm=start;cm<=M;cm++){jm=cm-start+1;V[cm]=ramp?(jm===1?2:(jm===2?3:STEADY)):STEADY;P[cm]=nw[cm];Rn[cm]=R[cm];}return {V:V,P:P,Rn:Rn};}
   function ops(o,m){return o.V[m]*VUELO+(o.P[m]+o.Rn[m])*PAQ;}
-  function avmon(s,M){var a=[];for(var k=0;k<6;k++){var mm=s+11+12*k;if(mm<=M)a.push(mm);}return a;}
-  function fay(start){return Math.ceil((start+11)/12);}
-  function avYear(start,scen,y){var F=fay(start);return y<F?0:1;}
-  function avCount(scen,y){return y===1?1:(scen==='minimo'?2:3);}
+  function avCount(y){return y===1?1:3;}
   function usd(v){return '$'+Math.round(v/TC).toLocaleString('en-US');}
   function usdK(v){return '$'+Math.round(v/TC/1000)+'K';}
   function setTxt(id,t){var e=document.getElementById(id);if(e)e.innerHTML=t;}
 
-  function model(scen){
+  function model(){
     var M=60,m,i;
-    var mx=vendor(1,false,scen,true,M),ld=vendor(1,true,scen,false,M),jr=JR.map(function(s){return vendor(s,true,scen,false,M);});
+    var mx=vendor(1,false,EVERY_JRMAX,M),ld=vendor(1,true,EVERY_LIDER,M),jr=JR.map(function(s){return vendor(s,true,EVERY_JRMAX,M);});
     var active=[];for(m=0;m<=M;m++){var a=1;for(i=0;i<JR.length;i++)if(JR[i]<=m)a++;active[m]=a;}
-    var lav=avmon(1,M),jav=JR.map(function(s){return avmon(s,M);});
-    return {M:M,mx:mx,ld:ld,jr:jr,active:active,lav:lav,jav:jav};
+    return {M:M,mx:mx,ld:ld,jr:jr,active:active};
   }
   function yearAgg(mo,y){
     var ms=[],m,i;for(m=12*y+1;m<=12*y+12;m++)ms.push(m);
     var maxO=0,lidO=0,jrO=0,sue=0,V=0,P=0,R=0;
     ms.forEach(function(m){maxO+=ops(mo.mx,m);lidO+=ops(mo.ld,m);for(i=0;i<mo.jr.length;i++)jrO+=ops(mo.jr[i],m);sue+=mo.active[m]*BASE;
       V+=mo.mx.V[m]+mo.ld.V[m];P+=mo.mx.P[m]+mo.ld.P[m];R+=mo.mx.Rn[m]+mo.ld.Rn[m];for(i=0;i<mo.jr.length;i++){V+=mo.jr[i].V[m];P+=mo.jr[i].P[m];R+=mo.jr[i].Rn[m];}});
-    var lc=avCount(cur,y+1);
-    var jc=0;
-    return {ms:ms,maxO:maxO,lidO:lidO,jrO:jrO,sue:sue,V:V,P:P,R:R,lc:lc,jc:jc};
+    return {ms:ms,maxO:maxO,lidO:lidO,jrO:jrO,sue:sue,V:V,P:P,R:R,lc:avCount(y+1)};
   }
 
   function renderProy(){
     var el=document.getElementById('neg-proy');if(!el)return;
-    var mo=model(cur),html='',TL=0,TJ=0,TB=0,TA=0,TAV=0,y;
+    var mo=model(),html='',TL=0,TJ=0,TB=0,TA=0,TAV=0,y;
     for(y=0;y<5;y++){var a=yearAgg(mo,y);
       var opT=a.maxO+a.lidO+a.jrO;
       var anaBase=opT-0.15*opT-0.255*(a.lidO+a.jrO)-a.sue;
-      var lider=0.255*a.lidO+0.085*a.jrO+12*BASE+a.lc*AVL+a.jc*AVO;
-      var jrs=0.17*a.jrO+(a.sue-12*BASE)+a.jc*AVJ;
-      var conAv=anaBase+0.595*(a.lc+a.jc)*AVION;
+      var lider=0.255*a.lidO+0.085*a.jrO+12*BASE+a.lc*AVL;
+      var jrs=0.17*a.jrO+(a.sue-12*BASE);
+      var conAv=anaBase+0.595*a.lc*AVION;
       var njr=mo.active[12*y+12]-1;
-      TL+=lider;TJ+=jrs;TB+=anaBase;TA+=conAv;TAV+=(a.lc+a.jc);
-      html+='<tr><td>Año '+(y+1)+'</td><td>Max + Líder + '+njr+' Jr</td><td>'+(a.lc+a.jc)+'</td><td>'+usd(lider)+'</td><td>'+usd(jrs)+'</td><td>'+usd(anaBase)+'</td><td>'+usd(conAv)+'</td></tr>';
+      TL+=lider;TJ+=jrs;TB+=anaBase;TA+=conAv;TAV+=a.lc;
+      html+='<tr><td>A\u00f1o '+(y+1)+'</td><td>Max + L\u00edder + '+njr+' Jr</td><td>'+a.lc+'</td><td>'+usd(lider)+'</td><td>'+usd(jrs)+'</td><td>'+usd(anaBase)+'</td><td>'+usd(conAv)+'</td></tr>';
     }
-    html+='<tr class="row-total"><td>Total 5 Años</td><td></td><td>'+TAV+'</td><td>'+usd(TL)+'</td><td>'+usd(TJ)+'</td><td>'+usd(TB)+'</td><td>'+usd(TA)+'</td></tr>';
+    html+='<tr class="row-total"><td>Total 5 A\u00f1os</td><td></td><td>'+TAV+'</td><td>'+usd(TL)+'</td><td>'+usd(TJ)+'</td><td>'+usd(TB)+'</td><td>'+usd(TA)+'</td></tr>';
     el.innerHTML=html;
     setTxt('neg-acum-base',usd(TB));setTxt('neg-acum-avion',usd(TA));
   }
   function renderBim(){
     var el=document.getElementById('neg-bim');if(!el)return;
-    var mo=model(cur),html='',B,k,i;
+    var mo=model(),html='',B,k,i;
     var TV=0,TP=0,TR=0,TO=0,T15=0,TC1=0,TS=0,TN=0;
     for(B=1;B<=12;B++){var m1=2*B-1,m2=2*B,tv=0,tp=0,tr=0,opT=0,lj=0,sue=0;
       for(k=0;k<2;k++){var m=k===0?m1:m2;
@@ -1379,105 +1367,99 @@ window.addEventListener('scroll', () => {
       var c15=0.15*opT,comis=0.255*lj,neta=opT-c15-comis-sue;
       var njr=mo.active[m2]-1,eq=njr>0?('Max + L + '+njr+'Jr'):'Max + L';
       TV+=tv;TP+=tp;TR+=tr;TO+=opT;T15+=c15;TC1+=comis;TS+=sue;TN+=neta;
-      html+='<tr><td>'+bimLabel(B)+'</td><td style="text-align:left;color:var(--gray-light);font-family:inherit;font-weight:500;">'+eq+'</td><td>'+tv+'</td><td>'+tp+'</td><td style="color:var(--gold-light);">'+tr+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(opT)+'</td><td style="color:var(--gray);">−'+usd(c15)+'</td><td style="color:var(--gray);">−'+usd(comis)+'</td><td style="color:var(--gray);">−'+usd(sue)+'</td><td style="color:var(--gold);font-weight:700;">'+usd(neta)+'</td></tr>';
+      html+='<tr><td>'+bimLabel(B)+'</td><td style="text-align:left;color:var(--gray-light);font-family:inherit;font-weight:500;">'+eq+'</td><td>'+tv+'</td><td>'+tp+'</td><td style="color:var(--gold-light);">'+tr+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(opT)+'</td><td style="color:var(--gray);">\u2212'+usd(c15)+'</td><td style="color:var(--gray);">\u2212'+usd(comis)+'</td><td style="color:var(--gray);">\u2212'+usd(sue)+'</td><td style="color:var(--gold);font-weight:700;">'+usd(neta)+'</td></tr>';
     }
-    html+='<tr class="row-total"><td>Total 24 meses</td><td></td><td>'+TV+'</td><td>'+TP+'</td><td>'+TR+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(TO)+'</td><td>−'+usd(T15)+'</td><td>−'+usd(TC1)+'</td><td>−'+usd(TS)+'</td><td>'+usd(TN)+'</td></tr>';
+    html+='<tr class="row-total"><td>Total 24 meses</td><td></td><td>'+TV+'</td><td>'+TP+'</td><td>'+TR+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(TO)+'</td><td>\u2212'+usd(T15)+'</td><td>\u2212'+usd(TC1)+'</td><td>\u2212'+usd(TS)+'</td><td>'+usd(TN)+'</td></tr>';
     el.innerHTML=html;
   }
   function renderOp(){
     var el=document.getElementById('neg-op');if(!el)return;
-    var mo=model(cur),html='',TV=0,TP=0,TR=0,TO=0,T15=0,TC1=0,TS=0,TN=0,y;
+    var mo=model(),html='',TV=0,TP=0,TR=0,TO=0,T15=0,TC1=0,TS=0,TN=0,y;
     for(y=0;y<5;y++){var a=yearAgg(mo,y);
       var opT=a.maxO+a.lidO+a.jrO,c15=0.15*opT,comis=0.255*(a.lidO+a.jrO),neta=opT-c15-comis-a.sue;
       TV+=a.V;TP+=a.P;TR+=a.R;TO+=opT;T15+=c15;TC1+=comis;TS+=a.sue;TN+=neta;
-      html+='<tr><td>Año '+(y+1)+'<div style="font-size:11px;color:var(--gray);font-weight:400;font-family:Manrope;">'+PER[y]+'</div></td><td style="border-left:1px solid var(--gold-border);">'+a.V+'</td><td>'+a.P+'</td><td style="color:var(--gold-light);">'+a.R+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(opT)+'</td><td style="color:var(--gray);">−'+usd(c15)+'</td><td style="color:var(--gray);">−'+usd(comis)+'</td><td style="color:var(--gray);">−'+usd(a.sue)+'</td><td style="color:var(--gold);font-weight:700;">'+usd(neta)+'</td></tr>';
+      html+='<tr><td>A\u00f1o '+(y+1)+'<div style="font-size:11px;color:var(--gray);font-weight:400;font-family:Manrope;">'+PER[y]+'</div></td><td style="border-left:1px solid var(--gold-border);">'+a.V+'</td><td>'+a.P+'</td><td style="color:var(--gold-light);">'+a.R+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(opT)+'</td><td style="color:var(--gray);">\u2212'+usd(c15)+'</td><td style="color:var(--gray);">\u2212'+usd(comis)+'</td><td style="color:var(--gray);">\u2212'+usd(a.sue)+'</td><td style="color:var(--gold);font-weight:700;">'+usd(neta)+'</td></tr>';
     }
-    html+='<tr class="row-total"><td>Total 5 años</td><td style="border-left:1px solid var(--gold-border);">'+TV+'</td><td>'+TP+'</td><td>'+TR+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(TO)+'</td><td>−'+usd(T15)+'</td><td>−'+usd(TC1)+'</td><td>−'+usd(TS)+'</td><td>'+usd(TN)+'</td></tr>';
+    html+='<tr class="row-total"><td>Total 5 a\u00f1os</td><td style="border-left:1px solid var(--gold-border);">'+TV+'</td><td>'+TP+'</td><td>'+TR+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(TO)+'</td><td>\u2212'+usd(T15)+'</td><td>\u2212'+usd(TC1)+'</td><td>\u2212'+usd(TS)+'</td><td>'+usd(TN)+'</td></tr>';
     el.innerHTML=html;
   }
   function renderTot(){
     var el=document.getElementById('neg-tot');if(!el)return;
-    var mo=model(cur),html='',TOp=0,TAv=0,TG2=0,y;
+    var mo=model(),html='',TOp=0,TAv=0,TG2=0,y;
     for(y=0;y<5;y++){var a=yearAgg(mo,y);
       var opT=a.maxO+a.lidO+a.jrO;
       var anaBase=opT-0.15*opT-0.255*(a.lidO+a.jrO)-a.sue;
-      var anaAv=0.595*(a.lc+a.jc)*AVION,tot=anaBase+anaAv;
+      var anaAv=0.595*a.lc*AVION,tot=anaBase+anaAv;
       TOp+=anaBase;TAv+=anaAv;TG2+=tot;
-      html+='<tr><td>Año '+(y+1)+'<div style="font-size:11px;color:var(--gray);font-weight:400;font-family:Manrope;">'+PER[y]+'</div></td><td>'+usd(anaBase)+'</td><td>'+usd(anaAv)+'</td><td style="color:var(--gold);font-weight:700;font-size:16px;">'+usd(tot)+'</td></tr>';
+      html+='<tr><td>A\u00f1o '+(y+1)+'<div style="font-size:11px;color:var(--gray);font-weight:400;font-family:Manrope;">'+PER[y]+'</div></td><td>'+usd(anaBase)+'</td><td>'+usd(anaAv)+'</td><td style="color:var(--gold);font-weight:700;font-size:16px;">'+usd(tot)+'</td></tr>';
     }
-    html+='<tr class="row-total"><td>Total 5 años</td><td>'+usd(TOp)+'</td><td>'+usd(TAv)+'</td><td style="font-size:17px;">'+usd(TG2)+'</td></tr>';
+    html+='<tr class="row-total"><td>Total 5 a\u00f1os</td><td>'+usd(TOp)+'</td><td>'+usd(TAv)+'</td><td style="font-size:17px;">'+usd(TG2)+'</td></tr>';
     el.innerHTML=html;
   }
   function render15(){
     var el=document.getElementById('neg-15');if(!el)return;
-    var mo=model(cur),html='',TO=0,T15=0,y;
+    var mo=model(),html='',TO=0,T15=0,y;
     for(y=0;y<5;y++){var a=yearAgg(mo,y);var opT=a.maxO+a.lidO+a.jrO,c15=0.15*opT;TO+=opT;T15+=c15;
-      html+='<tr><td>Año '+(y+1)+'</td><td>'+usd(opT)+'</td><td>'+usd(c15)+'</td></tr>';}
-    html+='<tr class="row-total"><td>Total 5 Años</td><td>'+usd(TO)+'</td><td>'+usd(T15)+'</td></tr>';
+      html+='<tr><td>A\u00f1o '+(y+1)+'</td><td>'+usd(opT)+'</td><td>'+usd(c15)+'</td></tr>';}
+    html+='<tr class="row-total"><td>Total 5 A\u00f1os</td><td>'+usd(TO)+'</td><td>'+usd(T15)+'</td></tr>';
     el.innerHTML=html;
   }
   function renderRoles(){
-    var mo=model(cur),a3=yearAgg(mo,2),i;
+    var mo=model(),a3=yearAgg(mo,2),i;
     var maxOps=a3.maxO;
     function lidSin(y){var a=yearAgg(mo,y);return 0.255*a.lidO+0.085*a.jrO+12*BASE;}
     var l1=lidSin(0),l5=lidSin(4);
     var jOps=0;a3.ms.forEach(function(m){jOps+=ops(mo.jr[0],m);});
     var jSin=0.17*jOps+12*BASE;
-    if(cur==='minimo'){
-      setTxt('neg-max-goal','1 paquete cada 2 meses + 3 vuelos charter por mes');
-      setTxt('neg-lid-goal','Cuota (M3+): 1 paquete cada 2 meses + 3 vuelos charter/mes');
-      setTxt('neg-jr-goal','Cuota (propio M3+): 1 paquete cada 2 meses + 3 vuelos charter/mes');
-    }else{
-      setTxt('neg-max-goal','1 paquete al mes + 4 vuelos charter por mes');
-      setTxt('neg-lid-goal','Cuota (M3+): 1 paquete al mes + 4 vuelos charter/mes');
-      setTxt('neg-jr-goal','Cuota (propio M3+): 1 paquete al mes + 4 vuelos charter/mes');
-    }
+    setTxt('neg-max-goal','1 paquete al trimestre + 4 vuelos charter por mes');
+    setTxt('neg-lid-goal','Cuota (M3+): 1 paquete al bimestre + 4 vuelos charter/mes');
+    setTxt('neg-jr-goal','Cuota (propio M3+): 1 paquete al trimestre + 4 vuelos charter/mes');
     setTxt('neg-max-amt',usdK(maxOps));
-    setTxt('neg-lid-amt',usdK(l1)+' → '+usdK(l5));
-    setTxt('neg-jr-amt','~'+usdK(jSin)+'/año');
+    setTxt('neg-lid-amt',usdK(l1)+' \u2192 '+usdK(l5));
+    setTxt('neg-jr-amt','~'+usdK(jSin)+'/a\u00f1o');
   }
   function renderAv(){
     var el=document.getElementById('neg-av');if(!el)return;
-    var steady=(cur==='minimo')?2:3,html='',TC2=0,TU=0,T15=0,TCo=0,TN=0,y;
+    var html='',TC2=0,TU=0,T15=0,TCo=0,TN=0,y;
     for(y=1;y<=5;y++){
-      var cnt=avCount(cur,y),util=cnt*AVION,c15=0.15*util,comis=cnt*0.255*AVION,neta=0.595*cnt*AVION;
+      var cnt=avCount(y),util=cnt*AVION,c15=0.15*util,comis=cnt*0.255*AVION,neta=0.595*cnt*AVION;
       TC2+=cnt;TU+=util;T15+=c15;TCo+=comis;TN+=neta;
-      html+='<tr><td>Año '+y+'<div style="font-size:11px;color:var(--gray);font-weight:400;font-family:Manrope;">'+PER[y-1]+'</div></td><td style="border-left:1px solid var(--gold-border);color:var(--gold-light);">'+cnt+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(util)+'</td><td style="color:var(--gray);">−'+usd(c15)+'</td><td style="color:var(--gray);">−'+usd(comis)+'</td><td style="color:var(--gold);font-weight:700;">'+usd(neta)+'</td></tr>';
+      html+='<tr><td>A\u00f1o '+y+'<div style="font-size:11px;color:var(--gray);font-weight:400;font-family:Manrope;">'+PER[y-1]+'</div></td><td style="border-left:1px solid var(--gold-border);color:var(--gold-light);">'+cnt+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(util)+'</td><td style="color:var(--gray);">\u2212'+usd(c15)+'</td><td style="color:var(--gray);">\u2212'+usd(comis)+'</td><td style="color:var(--gold);font-weight:700;">'+usd(neta)+'</td></tr>';
     }
-    html+='<tr class="row-total"><td>Total 5 años</td><td style="border-left:1px solid var(--gold-border);">'+TC2+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(TU)+'</td><td>−'+usd(T15)+'</td><td>−'+usd(TCo)+'</td><td>'+usd(TN)+'</td></tr>';
+    html+='<tr class="row-total"><td>Total 5 a\u00f1os</td><td style="border-left:1px solid var(--gold-border);">'+TC2+'</td><td style="border-left:1px solid var(--gold-border);">'+usd(TU)+'</td><td>\u2212'+usd(T15)+'</td><td>\u2212'+usd(TCo)+'</td><td>'+usd(TN)+'</td></tr>';
     el.innerHTML=html;
-    setTxt('neg-card-av',steady);
-    setTxt('neg-av-note','1 avión el año 1 y '+steady+' al año desde el año 2');
-    setTxt('neg-av-lid','Cierra los aviones del equipo: 1 el año 1, '+steady+' al año desde el año 2');
-    setTxt('neg-av-jr','Bono de referido: $10,000 USD si refiere un cliente que compra avión');
-    setTxt('neg-av-prose','1 avión el año 1 y '+steady+' al año desde el año 2');
+    setTxt('neg-card-av','3');
+    setTxt('neg-av-note','1 avi\u00f3n el a\u00f1o 1 y 3 al a\u00f1o desde el a\u00f1o 2');
+    setTxt('neg-av-lid','Cierra los aviones del equipo: 1 el a\u00f1o 1, 3 al a\u00f1o desde el a\u00f1o 2');
+    setTxt('neg-av-jr','Bono de referido: $10,000 USD si refiere un cliente que compra avi\u00f3n');
+    setTxt('neg-av-prose','1 avi\u00f3n el a\u00f1o 1 y 3 al a\u00f1o desde el a\u00f1o 2');
   }
   function renderFunnel(){
-    var mo=model(cur),p=yearAgg(mo,4).P,lo=Math.round(p/10),hi=Math.round(p/6),pct=lo+'–'+hi+'%';
+    var mo=model(),p=yearAgg(mo,4).P;
+    var lo=(p/550*100),hi=(p/250*100);
+    var pct=lo.toFixed(0)+'\u2013'+hi.toFixed(0)+'%';
     setTxt('neg-fpkg',p);setTxt('neg-fpkg2',p);setTxt('neg-fpct',pct);setTxt('neg-fpct2',pct);
-    var avn=(cur==='minimo')?2:3,avpct=(cur==='minimo')?'3–4%':'4–6%';
-    setTxt('neg-avf-n',avn);setTxt('neg-avf-n2',avn);setTxt('neg-avf-pct',avpct);setTxt('neg-avf-pct2',avpct);
+    setTxt('neg-avf-n','3');setTxt('neg-avf-n2','3');setTxt('neg-avf-pct','4\u20136%');setTxt('neg-avf-pct2','4\u20136%');
   }
   function renderHitos(){
     if(!document.getElementById('hito-acum'))return;
-    var mo=model(cur),cumB=0,cumA=0,yMillon=null,yAnnualAv=null,y;
+    var mo=model(),cumB=0,cumA=0,yMillon=null,yAnnualAv=null,y;
     function usdM(v){return '$'+(Math.round(v/TC/100000)/10)+'M';}
     for(y=0;y<5;y++){var a=yearAgg(mo,y);
       var opT=a.maxO+a.lidO+a.jrO;
       var anaBase=opT-0.15*opT-0.255*(a.lidO+a.jrO)-a.sue;
-      var conAv=anaBase+0.595*(a.lc+a.jc)*AVION;
+      var conAv=anaBase+0.595*a.lc*AVION;
       cumB+=anaBase;cumA+=conAv;
       if(yMillon===null&&cumB/TC>=1000000)yMillon=y+1;
       if(yAnnualAv===null&&conAv/TC>=1000000)yAnnualAv=y+1;
     }
-    if(yMillon===3)setTxt('hito-equipo','Equipo completo (Líder + 5)<br>y primer millón USD acumulado.');
-    else setTxt('hito-equipo','Equipo completo (Líder + 5).<br>Primer millón acumulado en el Año '+yMillon+'.');
-    setTxt('hito-anual-when',yAnnualAv?('Año '+yAnnualAv):'—');
-    setTxt('hito-acum',usdM(cumB)+' base · '+usdM(cumA)+' con avión<br>acumulado.');
+    setTxt('hito-equipo','Equipo de 5 vendedores produciendo.<br>Primer mill\u00f3n USD acumulado en el A\u00f1o '+yMillon+'.');
+    setTxt('hito-anual-when',yAnnualAv?('A\u00f1o '+yAnnualAv):'\u2014');
+    setTxt('hito-acum',usdM(cumB)+' base \u00b7 '+usdM(cumA)+' con avi\u00f3n<br>acumulado.');
+    setTxt('neg-hero-util',usdM(cumA));
+    setTxt('neg-hero-millon',yAnnualAv?('A\u00f1o '+yAnnualAv):'\u2014');
   }
-  function renderToggles(){var bs=document.querySelectorAll('.scenario-toggle button');for(var i=0;i<bs.length;i++){if(bs[i].getAttribute('data-scen')===cur)bs[i].classList.add('active');else bs[i].classList.remove('active');}}
-  function renderAll(){renderRoles();renderProy();renderBim();renderOp();renderTot();renderAv();render15();renderFunnel();renderHitos();renderToggles();}
-  window.setScenario=function(s){cur=s;renderAll();};
+  function renderAll(){renderRoles();renderProy();renderBim();renderOp();renderTot();renderAv();render15();renderFunnel();renderHitos();}
   if(document.readyState!=='loading')renderAll();else document.addEventListener('DOMContentLoaded',renderAll);
 })();
 </script>
