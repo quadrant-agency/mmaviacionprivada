@@ -338,7 +338,39 @@ th.right{text-align:right;}
   <div class="container">
     <div class="section-label fade-in">La comisión</div>
     <h2 class="section-title fade-in">Cómo se calcula la comisión</h2>
-    <p class="section-intro fade-in">La comisión se calcula sobre la <b style="color:var(--white)">utilidad neta</b> de cada venta: lo que queda una vez descontado el 15% de costos operativos. El monto en pesos es variable —cada operación tiene su propia utilidad—, así que cada quien hace sus propios cálculos sobre estos porcentajes.</p>
+    <p class="section-intro fade-in">La comisión se calcula sobre la <b style="color:var(--white)">utilidad neta</b> de cada venta: lo que queda después de descontar los costos operativos y un 15% de costos administrativos. El monto en pesos es variable —cada operación tiene su propia utilidad—, así que cada quien hace sus propios cálculos sobre estos porcentajes. La fórmula, paso a paso:</p>
+
+    <div class="fade-in" style="max-width:760px; margin:8px auto 40px; background:var(--bg-card-alt); border:1px solid var(--gold-border); border-radius:16px; padding:30px 28px;">
+      <div style="display:flex; flex-direction:column; gap:0;">
+
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 0;">
+          <div><div style="color:var(--white); font-weight:600; font-size:15px;">Total ingresado por el cliente</div><div style="color:var(--gray); font-size:13px; margin-top:2px;">Lo que paga por el vuelo, paquete o avión</div></div>
+          <div style="color:var(--white); font-family:'Manrope',sans-serif; font-weight:700; font-size:20px; white-space:nowrap;">100%</div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0; border-top:1px solid var(--gold-border);">
+          <div><div style="color:var(--red); font-weight:600; font-size:15px;">− Costos operativos</div><div style="color:var(--gray); font-size:13px; margin-top:2px;">Renta de aeronave, combustible, tripulación, tasas de aeropuerto y navegación, hangaraje, catering, handling y seguros de cada operación.</div></div>
+          <div style="color:var(--red); font-family:'Manrope',sans-serif; font-weight:700; font-size:20px; white-space:nowrap;">−</div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:rgba(76,175,80,0.08); border-radius:12px; margin:4px 0;">
+          <div style="color:var(--green); font-weight:700; font-size:16px;">= Utilidad operativa</div>
+          <div style="color:var(--green); font-family:'Manrope',sans-serif; font-weight:700; font-size:18px; white-space:nowrap;">subtotal</div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0; border-top:1px solid var(--gold-border);">
+          <div><div style="color:var(--red); font-weight:600; font-size:15px;">− Costos administrativos</div><div style="color:var(--gray); font-size:13px; margin-top:2px;">Gastos de estructura y operación de la empresa</div></div>
+          <div style="color:var(--red); font-family:'Manrope',sans-serif; font-weight:700; font-size:20px; white-space:nowrap;">−15%</div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; background:rgba(201,168,76,0.12); border:1px solid var(--gold); border-radius:12px; margin:4px 0 0;">
+          <div style="color:var(--gold-light); font-weight:700; font-size:16px;">= Utilidad neta</div>
+          <div style="color:var(--gold-light); font-family:'Manrope',sans-serif; font-weight:700; font-size:18px; white-space:nowrap;">base de comisión</div>
+        </div>
+
+        <div style="text-align:center; padding:20px 0 4px; color:var(--gray); font-size:13.5px;">↓ sobre esta utilidad neta se aplica la comisión ↓</div>
+      </div>
+    </div>
     <div class="money-grid">
       <div class="mcard fade-in highlight">
         <div class="mcard-label">Sobre sus ventas</div><div class="mcard-amount">30%<small> de la utilidad neta</small></div>
